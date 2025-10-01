@@ -20,6 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Embedded JSON in text content for clients with structured content display issues
 - Fixed fullLocalPath usage instructions
 
+### ⚠️ Compatibility Note
+**Dual-Format Response**: This version temporarily returns search results in **two formats simultaneously** (structured content + embedded JSON in text) to ensure compatibility across all Cursor IDE versions. This approach resolves both MCP protocol compliance and display issues across different client versions.
+
 ---
 
 ## [1.1.1] - 2025-10-01

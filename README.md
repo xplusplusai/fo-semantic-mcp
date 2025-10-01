@@ -29,6 +29,17 @@ Transform your F&O development workflow with AI-powered semantic search over 50,
 - **Architects** understanding system patterns
 - **Teams** accelerating development cycles
 
+## ⚠️ Current Version Note (v1.1.2)
+
+**Cursor IDE Compatibility**: This version temporarily returns search results in **two formats simultaneously** to ensure compatibility across all Cursor IDE versions:
+
+1. **Structured Content** - For MCP protocol compliance and newer clients
+2. **Embedded JSON in Text** - For older clients with structured content display issues
+
+This dual-format approach ensures the MCP server works reliably with both legacy and current Cursor IDE installations. Future versions may optimize this once MCP client standardization improves.
+
+---
+
 ## 🔥 Real-World AI Assistant Scenarios
 
 **Extension Development:**
