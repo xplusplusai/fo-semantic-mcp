@@ -1,9 +1,6 @@
-# Dependencies
-node_modules/
+# Release version includes built files and dependencies for end users
+# Only exclude development files
 npm-debug.log*
-
-# Build outputs
-dist/
 *.tsbuildinfo
 
 # Environment files
