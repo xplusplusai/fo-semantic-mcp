@@ -49,14 +49,14 @@ Visit our website to view available plans and pricing.
 
 ### 4. Configure
 
-Update your MCP client configuration:
+Update your MCP client configuration (replace `C:\\Downloads\\` with wherever you saved the binary):
 
 **Cursor IDE** (`~/.cursor/mcp.json`):
 ```json
 {
   "mcpServers": {
     "fo-semantic-mcp": {
-      "command": "C:\\path\\to\\fo-semantic-mcp-win.exe",
+      "command": "C:\\Downloads\\fo-semantic-mcp-win.exe",
       "env": {
         "FOINDEX_API_KEY": "your_api_key_here",
         "FO_SEARCH_DEFAULT_THRESHOLD": "0.75",
@@ -72,7 +72,7 @@ Update your MCP client configuration:
 {
   "mcpServers": {
     "fo-semantic-mcp": {
-      "command": "C:\\path\\to\\fo-semantic-mcp-win.exe",
+      "command": "C:\\Downloads\\fo-semantic-mcp-win.exe",
       "env": {
         "FOINDEX_API_KEY": "your_api_key_here",
         "FO_LOCAL_ASSETS_PATH": "C:\\Users\\[firstname.lastname]\\AppData\\Local\\Microsoft\\Dynamics365\\10.0.2263.74\\PackagesLocalDirectory"
