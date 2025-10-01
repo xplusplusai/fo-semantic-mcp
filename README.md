@@ -149,15 +149,10 @@ AI automatically retries searches with lower thresholds when no results found:
 ## 📖 Documentation
 
 - **Getting Started**: See `docs/GETTING_STARTED.md`
-- **Configuration**: See `docs/CONFIGURATION.md`
-- **Troubleshooting**: See `docs/TROUBLESHOOTING.md`
-- **API Reference**: https://fo-semantic-mcp.xplusplus.ai/docs
 
 ## 🆘 Support
 
-- **Documentation**: https://fo-semantic-mcp.xplusplus.ai
 - **Issues**: Report bugs and feature requests on GitHub
-- **Community**: Join our Discord for discussions
 - **Enterprise**: Contact contact@xplusplus.ai for custom solutions
 
 ## 📄 License
