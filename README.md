@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/xplusplusai-fo-semantic-mcp-badge.png)](https://mseep.ai/app/xplusplusai-fo-semantic-mcp)
+
 # FO Semantic MCP Server
 
 🚀 **The ultimate Model Context Protocol server for Microsoft Dynamics 365 Finance & Operations development**
