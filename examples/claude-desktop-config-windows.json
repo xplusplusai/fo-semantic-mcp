@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "fo-semantic-mcp": {
+      "command": "fo-semantic-mcp",
+      "env": {
+        "FOINDEX_API_KEY": "your_api_key_here",
+        "FO_SEARCH_DEFAULT_THRESHOLD": "0.75",
+        "FO_SEARCH_TIMEOUT_MS": "30000",
+        "FO_SEARCH_DEFAULT_LIMIT": "10",
+        "FO_SEARCH_MAX_LIMIT": "50",
+        "FO_LOCAL_ASSETS_PATH": "C:\\path\\to\\your\\PackagesLocalDirectory"
+      }
+    }
+  }
+}

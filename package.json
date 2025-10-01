@@ -1,0 +1,12 @@
+{
+  "name": "fo-semantic-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server providing semantic search over Dynamics 365 F&O artifacts.",
+  "author": "Pleasant Innovations",
+  "license": "Commercial",
+  "homepage": "https://fo-semantic-mcp.xplusplus.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/fo-semantic-mcp"
+  }
+}
