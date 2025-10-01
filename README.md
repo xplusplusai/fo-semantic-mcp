@@ -32,15 +32,32 @@ Download the latest release for your platform:
 
 ### 2. Install
 
-**Windows:**
+Choose one of these options:
+
+**Option A: Automated Installation (Recommended)**
+
+Windows:
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/install-windows.ps1
 ```
 
-**macOS/Linux:**
+macOS/Linux:
 ```bash
-bash scripts/install-macos.sh
+bash scripts/install-macos.sh  # or install-linux.sh
 ```
+
+The script will:
+- Copy binary to appropriate location
+- Add to your PATH automatically
+- Set up proper permissions
+
+**Option B: Manual Installation**
+
+1. Copy the binary to a location in your PATH
+   - Windows: `C:\Program Files\fo-semantic-mcp\`
+   - macOS/Linux: `/usr/local/bin/`
+2. Make executable (macOS/Linux): `chmod +x fo-semantic-mcp-*`
+3. Use full path in your IDE configuration if not in PATH
 
 ### 3. Get API Key
 
