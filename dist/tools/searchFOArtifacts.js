@@ -55,10 +55,9 @@ export function registerSearchTool(server, client, config) {
                 content: [
                     {
                         type: 'text',
-                        text: formatSuccessMessage(structured.results.length, structured.related?.length),
+                        text: formatSuccessMessage(structured.results.length, structured.related?.length, structured),
                     },
                 ],
-                structuredContent: structured,
             };
         }
         catch (error) {
@@ -96,12 +95,17 @@ function handleToolError(error, config) {
         ],
     };
 }
-function formatSuccessMessage(resultCount, relatedCount) {
+function formatSuccessMessage(resultCount, relatedCount, structured) {
     const parts = [`Found ${resultCount} primary artifacts.`];
     if (relatedCount && relatedCount > 0) {
         parts.push(`Included ${relatedCount} related artifacts.`);
     }
-    parts.push('Use structuredContent.localAssetsPath + fullLocalPath to open files.');
+    parts.push('Use fullLocalPath directly to open files.');
+    // Add structured data as JSON for AI client parsing
+    if (structured) {
+        parts.push('\n\nDetailed Results:');
+        parts.push(JSON.stringify(structured, null, 2));
+    }
     return parts.join(' ');
 }
 //# sourceMappingURL=searchFOArtifacts.js.map

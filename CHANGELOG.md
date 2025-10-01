@@ -5,6 +5,22 @@ All notable changes to FO Semantic MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2025-10-01
+
+🐛 **MCP Client Compatibility Fix**
+
+### Fixed
+- ✅ **Cursor IDE 2025 Compatibility**: Fixed structured content display issues in newer Cursor versions
+- ✅ **Response Format**: Now returns single text response with embedded JSON instead of separate structuredContent
+- ✅ **File Path Instructions**: Corrected guidance to use `fullLocalPath` directly instead of concatenating paths
+- ✅ **AI Client Parsing**: Structured data now included as parseable JSON text for better AI assistant integration
+
+### Changed
+- 🔄 **MCP Response Format**: Simplified from dual-part response to single text response with embedded JSON
+- 📝 **Instructions**: Updated file access instructions to reflect correct fullLocalPath usage
+
+---
+
 ## [1.1.0] - 2025-01-06
 
 ### Changed
