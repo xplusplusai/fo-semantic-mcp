@@ -59,7 +59,8 @@ Update your MCP client configuration:
       "command": "C:\\path\\to\\fo-semantic-mcp-win.exe",
       "env": {
         "FOINDEX_API_KEY": "your_api_key_here",
-        "FO_SEARCH_DEFAULT_THRESHOLD": "0.75"
+        "FO_SEARCH_DEFAULT_THRESHOLD": "0.75",
+        "FO_LOCAL_ASSETS_PATH": "C:\\Users\\[firstname.lastname]\\AppData\\Local\\Microsoft\\Dynamics365\\10.0.2263.74\\PackagesLocalDirectory"
       }
     }
   }
@@ -73,7 +74,8 @@ Update your MCP client configuration:
     "fo-semantic-mcp": {
       "command": "C:\\path\\to\\fo-semantic-mcp-win.exe",
       "env": {
-        "FOINDEX_API_KEY": "your_api_key_here"
+        "FOINDEX_API_KEY": "your_api_key_here",
+        "FO_LOCAL_ASSETS_PATH": "C:\\Users\\[firstname.lastname]\\AppData\\Local\\Microsoft\\Dynamics365\\10.0.2263.74\\PackagesLocalDirectory"
       }
     }
   }
@@ -82,13 +84,13 @@ Update your MCP client configuration:
 
 ## 🔧 Configuration Options
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `FOINDEX_API_KEY` | **Required** - Your API key | - |
-| `FO_SEARCH_DEFAULT_THRESHOLD` | Relevance filter (0-1) | `0.75` |
-| `FO_LOCAL_ASSETS_PATH` | Path to F&O PackagesLocalDirectory | Optional |
-| `FO_SEARCH_TIMEOUT_MS` | Request timeout | `10000` |
-| `FO_SEARCH_DEFAULT_LIMIT` | Default result limit | `10` |
+| Variable | Description | Default | Example |
+|----------|-------------|---------|---------|
+| `FOINDEX_API_KEY` | **Required** - Your API key | - | `your_api_key_here` |
+| `FO_SEARCH_DEFAULT_THRESHOLD` | Relevance filter (0-1) | `0.75` | `0.75` |
+| `FO_LOCAL_ASSETS_PATH` | Path to F&O PackagesLocalDirectory | Optional | `C:\Users\[firstname.lastname]\AppData\Local\Microsoft\Dynamics365\10.0.2263.74\PackagesLocalDirectory` |
+| `FO_SEARCH_TIMEOUT_MS` | Request timeout | `10000` | `10000` |
+| `FO_SEARCH_DEFAULT_LIMIT` | Default result limit | `10` | `10` |
 
 ## 💡 Example Queries
 
