@@ -23,3 +23,7 @@ Thumbs.db
 # Test files
 test-*
 *-test.*
+
+# Local notes
+.git-config-note.md
+GITHUB_SETUP.md
