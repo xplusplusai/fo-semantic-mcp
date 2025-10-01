@@ -2,7 +2,7 @@
 
 ## 🎯 What is FO Semantic MCP Server?
 
-**FO Semantic MCP Server supercharges your AI coding assistant with deep F&O knowledge!**
+**FO Semantic MCP Server enables true AI pair programming for F&O development!**
 
 This MCP server enables AI agents in Cursor IDE, Claude Desktop, and VS Code to automatically query 50,000+ F&O artifacts and analyze local source code when you're building extensions.
 
@@ -12,7 +12,7 @@ This MCP server enables AI agents in Cursor IDE, Claude Desktop, and VS Code to 
 - **Suggests implementation patterns** based on existing F&O code
 - **Understands F&O architecture** and provides context-aware guidance
 
-**Critical for extension work** - your AI assistant becomes an F&O expert that can instantly find and analyze the exact code patterns you need!
+**Transform your development workflow** - experience true AI pair programming where your AI partner has instant access to the entire F&O codebase and becomes your expert development companion!
 
 ## 🚀 Quick Installation
 

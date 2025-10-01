@@ -2,7 +2,7 @@
 
 🚀 **The ultimate Model Context Protocol server for Microsoft Dynamics 365 Finance & Operations development**
 
-**Supercharge your AI coding assistant** with deep F&O knowledge! This MCP server enables AI agents in Cursor IDE, VS Code, and Claude Desktop to automatically query 50,000+ F&O artifacts, analyze local source code, and find relevant examples for your current development task.
+**Enable true AI pair programming for F&O development!** This MCP server supercharges your AI coding assistant with deep F&O knowledge, enabling AI agents in Cursor IDE, VS Code, and Claude Desktop to automatically query 50,000+ F&O artifacts, analyze local source code, and find relevant examples for your current development task.
 
 🤖 **How it works:** When you're building F&O extensions, your AI assistant can now automatically:
 - Find similar implementations and patterns in existing F&O code
@@ -49,7 +49,7 @@ You: "What's the right way to extend purchase workflows?"
 AI: *finds workflow examples* "Looking at PurchReqWorkflow implementations..." *analyzes local XML*
 ```
 
-**🚀 The AI assistant becomes your F&O expert** - no more searching through thousands of files manually!
+**🚀 True AI pair programming for F&O** - your AI partner has instant access to the entire F&O codebase and becomes your expert development companion!
 
 ## ⚡ Quick Start
 
