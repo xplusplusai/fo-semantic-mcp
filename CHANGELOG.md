@@ -5,6 +5,23 @@ All notable changes to FO Semantic MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.2] - 2025-10-01
+
+**Critical Bug Fix**
+
+### Fixed
+- **MCP Protocol Compliance**: Restored `structuredContent` field to maintain MCP protocol compliance
+- **Tool Output Schema**: Fixed "MCP error -32602: Tool has an output schema but no structured content was provided"
+- **Dual Format Support**: Now provides both embedded JSON in text content AND structured content for maximum compatibility
+
+### Technical Details
+- Maintains backward compatibility with both older and newer Cursor IDE versions
+- Structured content available for MCP-compliant clients
+- Embedded JSON in text content for clients with structured content display issues
+- Fixed fullLocalPath usage instructions
+
+---
+
 ## [1.1.1] - 2025-10-01
 
 🐛 **MCP Client Compatibility Fix**

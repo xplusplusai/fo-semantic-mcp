@@ -58,6 +58,7 @@ export function registerSearchTool(server, client, config) {
                         text: formatSuccessMessage(structured.results.length, structured.related?.length, structured),
                     },
                 ],
+                structuredContent: structured,
             };
         }
         catch (error) {
