@@ -1,0 +1,26 @@
+# Release version includes built files and dependencies for end users
+# Only exclude development files
+npm-debug.log*
+*.tsbuildinfo
+
+# Environment files
+.env*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test files
+test-*
+*-test.*
+
+# Local notes
+.git-config-note.md
+GITHUB_SETUP.md

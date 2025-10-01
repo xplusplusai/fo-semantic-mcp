@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "fo-semantic-mcp": {
+      "command": "node",
+      "args": ["/path/to/fo-semantic-mcp/dist/server.js"],
+      "env": {
+        "FOINDEX_API_KEY": "your_api_key_here",
+        "FO_SEARCH_DEFAULT_THRESHOLD": "0.75",
+        "FO_LOCAL_ASSETS_PATH": "/path/to/your/PackagesLocalDirectory"
+      }
+    }
+  }
+}
