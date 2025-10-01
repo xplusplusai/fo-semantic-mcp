@@ -2,7 +2,17 @@
 
 ## 🎯 What is FO Semantic MCP Server?
 
-FO Semantic MCP Server is an AI-powered tool that helps Microsoft Dynamics 365 Finance & Operations developers find and understand existing code through natural language search. It connects to your MCP-compatible IDE (Cursor, Claude Desktop, VS Code) and provides semantic search over 50,000+ F&O artifacts.
+**FO Semantic MCP Server supercharges your AI coding assistant with deep F&O knowledge!**
+
+This MCP server enables AI agents in Cursor IDE, Claude Desktop, and VS Code to automatically query 50,000+ F&O artifacts and analyze local source code when you're building extensions.
+
+🤖 **How Your AI Assistant Uses This:**
+- **Automatically finds relevant examples** when you describe what you want to build
+- **Reads actual F&O XML source files** from your local installation
+- **Suggests implementation patterns** based on existing F&O code
+- **Understands F&O architecture** and provides context-aware guidance
+
+**Critical for extension work** - your AI assistant becomes an F&O expert that can instantly find and analyze the exact code patterns you need!
 
 ## 🚀 Quick Installation
 
