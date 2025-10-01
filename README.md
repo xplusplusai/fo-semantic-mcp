@@ -19,7 +19,7 @@ Transform your F&O development workflow with AI-powered semantic search over 50,
 ✅ **AI Summaries** - Understand artifact purpose without reading XML
 ✅ **Local File Access** - Read actual F&O XML files for complete analysis
 ✅ **Adaptive Thresholds** - Automatically retry searches with lower relevance scores
-✅ **Multi-Platform** - Windows, macOS, Linux binaries
+✅ **Multi-Platform** - Works on Windows, macOS, Linux with Node.js
 ✅ **MCP Compatible** - Works with Cursor IDE, Claude Desktop, VS Code
 
 ## 🎯 Perfect For
@@ -53,23 +53,24 @@ AI: *finds workflow examples* "Looking at PurchReqWorkflow implementations..." *
 
 ## ⚡ Quick Start
 
-### 1. Download
+### 1. Prerequisites
 
-Download the latest release for your platform:
-- **Windows**: `fo-semantic-mcp-win.exe`
-- **macOS**: `fo-semantic-mcp-macos`
-- **Linux**: `fo-semantic-mcp-linux`
+Ensure you have **Node.js** installed:
+- Download from: https://nodejs.org/
+- Minimum version: Node.js 18+
 
-### 2. Setup
+### 2. Download & Setup
 
-Place the downloaded binary anywhere on your system and reference it in your IDE configuration.
+1. Download the latest release and extract it anywhere on your system
+2. The package includes:
+   - `fo-semantic-mcp-win.cmd` - Windows launcher script
+   - `dist/` - Compiled server files
+   - `node_modules/` - Dependencies (pre-installed)
+   - `package.json` - Project configuration
 
-**Windows:** No additional setup needed - the .exe runs directly
+**Windows:** Use the provided `fo-semantic-mcp-win.cmd` launcher
 
-**macOS/Linux:** Make it executable:
-```bash
-chmod +x fo-semantic-mcp-macos  # or fo-semantic-mcp-linux
-```
+**macOS/Linux:** Run directly with: `node dist/server.js`
 
 ### 3. Get API Key
 
@@ -79,14 +80,15 @@ Visit our website to view available plans and pricing.
 
 ### 4. Configure
 
-Update your MCP client configuration (replace `C:\\Downloads\\` with wherever you saved the binary):
+Update your MCP client configuration (replace `C:\\Downloads\\` with your extraction path):
 
 **Cursor IDE** (`~/.cursor/mcp.json`):
 ```json
 {
   "mcpServers": {
     "fo-semantic-mcp": {
-      "command": "C:\\Downloads\\fo-semantic-mcp-win.exe",
+      "command": "node",
+      "args": ["C:\\Downloads\\fo-semantic-mcp\\dist\\server.js"],
       "env": {
         "FOINDEX_API_KEY": "your_api_key_here",
         "FO_SEARCH_DEFAULT_THRESHOLD": "0.75",
@@ -102,7 +104,23 @@ Update your MCP client configuration (replace `C:\\Downloads\\` with wherever yo
 {
   "mcpServers": {
     "fo-semantic-mcp": {
-      "command": "C:\\Downloads\\fo-semantic-mcp-win.exe",
+      "command": "node",
+      "args": ["C:\\Downloads\\fo-semantic-mcp\\dist\\server.js"],
+      "env": {
+        "FOINDEX_API_KEY": "your_api_key_here",
+        "FO_LOCAL_ASSETS_PATH": "C:\\Users\\[firstname.lastname]\\AppData\\Local\\Microsoft\\Dynamics365\\10.0.2263.74\\PackagesLocalDirectory"
+      }
+    }
+  }
+}
+```
+
+**Alternative for Windows** - Use the launcher script:
+```json
+{
+  "mcpServers": {
+    "fo-semantic-mcp": {
+      "command": "C:\\Downloads\\fo-semantic-mcp\\fo-semantic-mcp-win.cmd",
       "env": {
         "FOINDEX_API_KEY": "your_api_key_here",
         "FO_LOCAL_ASSETS_PATH": "C:\\Users\\[firstname.lastname]\\AppData\\Local\\Microsoft\\Dynamics365\\10.0.2263.74\\PackagesLocalDirectory"
