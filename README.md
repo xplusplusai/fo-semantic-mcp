@@ -30,34 +30,16 @@ Download the latest release for your platform:
 - **macOS**: `fo-semantic-mcp-macos`
 - **Linux**: `fo-semantic-mcp-linux`
 
-### 2. Install
+### 2. Setup
 
-Choose one of these options:
+Place the downloaded binary anywhere on your system and reference it in your IDE configuration.
 
-**Option A: Automated Installation (Recommended)**
+**Windows:** No additional setup needed - the .exe runs directly
 
-Windows:
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/install-windows.ps1
-```
-
-macOS/Linux:
+**macOS/Linux:** Make it executable:
 ```bash
-bash scripts/install-macos.sh  # or install-linux.sh
+chmod +x fo-semantic-mcp-macos  # or fo-semantic-mcp-linux
 ```
-
-The script will:
-- Copy binary to appropriate location
-- Add to your PATH automatically
-- Set up proper permissions
-
-**Option B: Manual Installation**
-
-1. Copy the binary to a location in your PATH
-   - Windows: `C:\Program Files\fo-semantic-mcp\`
-   - macOS/Linux: `/usr/local/bin/`
-2. Make executable (macOS/Linux): `chmod +x fo-semantic-mcp-*`
-3. Use full path in your IDE configuration if not in PATH
 
 ### 3. Get API Key
 
@@ -74,7 +56,7 @@ Update your MCP client configuration:
 {
   "mcpServers": {
     "fo-semantic-mcp": {
-      "command": "fo-semantic-mcp",
+      "command": "C:\\path\\to\\fo-semantic-mcp-win.exe",
       "env": {
         "FOINDEX_API_KEY": "your_api_key_here",
         "FO_SEARCH_DEFAULT_THRESHOLD": "0.75"
@@ -89,7 +71,7 @@ Update your MCP client configuration:
 {
   "mcpServers": {
     "fo-semantic-mcp": {
-      "command": "fo-semantic-mcp",
+      "command": "C:\\path\\to\\fo-semantic-mcp-win.exe",
       "env": {
         "FOINDEX_API_KEY": "your_api_key_here"
       }
