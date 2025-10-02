@@ -44,6 +44,11 @@ export class SearchApiClient {
                 body.filters.artifactType = { "$in": params.artifact_types };
             }
         }
+        // Add foName filter if specified for exact match
+        if (params.filters?.foName) {
+            body.filters = body.filters || {};
+            body.filters.foName = params.filters.foName;
+        }
         const url = `${this.config.searchApiBaseUrl}/api/v1/search`;
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), this.config.requestTimeoutMs);

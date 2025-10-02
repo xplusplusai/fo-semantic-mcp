@@ -12,12 +12,16 @@ const FO_ARTIFACT_TYPE_ENUM = z.enum([
     'View',
     'Query',
 ]);
+const SearchFiltersSchema = z.object({
+    foName: z.string().optional().describe('Exact match filter for specific F&O artifact name (e.g., "CustTable", "SalesTable")'),
+}).optional();
 const SearchToolInput = z.object({
     query: z.string().min(1, 'query is required'),
     artifact_types: z.array(FO_ARTIFACT_TYPE_ENUM).nonempty().optional(),
     include_related: z.boolean().optional(),
     limit: z.number().int().positive().max(50).optional(),
     threshold: z.number().min(0).max(1).optional().describe('Minimum relevance score (0-1) to filter results'),
+    filters: SearchFiltersSchema,
 });
 const ArtifactResultSchema = z.object({
     foName: z.string(),

@@ -29,14 +29,21 @@ Transform your F&O development workflow with AI-powered semantic search over 50,
 - **Architects** understanding system patterns
 - **Teams** accelerating development cycles
 
-## ⚠️ Current Version Note (v1.1.2)
+## 🆕 New in v1.2.0
 
-**Cursor IDE Compatibility**: This version temporarily returns search results in **two formats simultaneously** to ensure compatibility across all Cursor IDE versions:
+**Exact Artifact Matching**: Added `foName` filter for precise artifact lookup when you know the exact F&O artifact name.
+
+**Key Features:**
+- **foName Filter**: Find specific artifacts by exact name (e.g., "CustTable", "SalesTable")
+- **AI Assistant Integration**: Enhanced MCP server instructions for exact matching
+- **Improved Precision**: Perfect for when you know exact artifact names from requirements
+
+## ⚠️ Compatibility Note
+
+**Cursor IDE Compatibility**: This version maintains dual-format response support to ensure compatibility across all Cursor IDE versions:
 
 1. **Structured Content** - For older clients with structured content display and MCP protocol compliance
 2. **Embedded JSON in Text** - For newer clients with structured content display issues
-
-This dual-format approach ensures the MCP server works reliably with both legacy and current Cursor IDE installations. Future versions may optimize this once MCP client standardization improves.
 
 ---
 
@@ -153,12 +160,34 @@ Update your MCP client configuration (replace `C:\\Downloads\\` with your extrac
 
 ## 💡 Example Queries
 
+### Natural Language Search
 ```
 "Find customer payment processing examples"
 "Show me sales order validation patterns"
 "Search for inventory transaction handling"
 "Find examples of data entity extensions"
 "Show purchase order approval workflows"
+```
+
+### Exact Artifact Matching (New in v1.2.0)
+```javascript
+// When you know the exact artifact name
+search_fo_artifacts({
+  query: "currency table",
+  filters: { foName: "Currency" }
+})
+
+// Find specific table by exact name
+search_fo_artifacts({
+  query: "customer data",
+  filters: { foName: "CustTable" }
+})
+
+// Locate exact form
+search_fo_artifacts({
+  query: "sales order form",
+  filters: { foName: "SalesTable" }
+})
 ```
 
 ## 🔍 Search Features
@@ -172,8 +201,14 @@ AI automatically retries searches with lower thresholds when no results found:
 
 ### Filter Options
 - **Artifact Types**: Table, Form, Class, EDT, Enum, DataEntity, View, Query
+- **foName Filter**: Exact match by specific F&O artifact name (e.g., "CustTable", "SalesTable")
 - **Result Limits**: 1-50 results per search
 - **Relevance Scoring**: 0-1 semantic similarity scores
+
+### When to Use foName Filter
+- **Known Artifact Names**: When you have exact F&O artifact names from requirements or documentation
+- **Precise Lookup**: Skip semantic matching and get the exact artifact you need
+- **Development Workflow**: Faster artifact discovery when exact names are specified
 
 ## 📖 Documentation
 

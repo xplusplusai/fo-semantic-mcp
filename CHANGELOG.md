@@ -5,6 +5,34 @@ All notable changes to FO Semantic MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-10-01
+
+**New Feature: Exact Artifact Matching**
+
+### Added
+- **foName Filter**: New exact match filter for finding specific F&O artifacts by name
+- **MCP Tool Enhancement**: Added `filters.foName` parameter to `search_fo_artifacts` tool
+- **AI Assistant Integration**: Updated MCP server instructions with foName filter examples
+- **API Documentation**: Added foName filter usage examples and documentation
+
+### Enhanced
+- **Search Precision**: When you know the exact F&O artifact name (e.g., "CustTable", "SalesTable"), use foName filter for precise results
+- **MCP Server Instructions**: Added examples showing how AI assistants should use foName for exact matches
+- **Tool Schema**: Updated MCP tool input schema to include filters.foName parameter
+
+### Use Cases
+- **Exact Artifact Lookup**: `search_fo_artifacts({ query: "currency table", filters: { foName: "Currency" } })`
+- **AI Assistant Guidance**: When AI knows specific artifact names, use foName for guaranteed exact matches
+- **Development Workflow**: Faster artifact discovery when exact names are known from requirements
+
+### Technical Changes
+- Updated `SearchFOArtifactsInput` interface to include filters.foName
+- Enhanced `SearchApiClient` to pass foName filter to backend API
+- Added foName parameter to MCP tool schema with proper Zod validation
+- Comprehensive documentation updates across API docs and MCP server instructions
+
+---
+
 ## [1.1.2] - 2025-10-01
 
 **Critical Bug Fix**

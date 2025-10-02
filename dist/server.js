@@ -102,6 +102,9 @@ function buildInstructions(localAssetsPath) {
     lines.push('- `limit` (optional): Number of results (default: 10, max: 50)');
     lines.push('- `threshold` (optional): Minimum relevance score 0-1 to filter results (default: 0.75 for high relevance)');
     lines.push('- `include_related` (optional): Include semantically related artifacts for broader context');
+    lines.push('- `filters` (optional): Advanced filtering options:');
+    lines.push('  - `foName` (string): **EXACT MATCH** - Find specific artifact by exact name (e.g., "CustTable", "SalesTable")');
+    lines.push('  - Use foName when you know the exact F&O artifact name and want only that specific artifact');
     lines.push('');
     lines.push('## ADAPTIVE THRESHOLD STRATEGY');
     lines.push('');
@@ -119,6 +122,13 @@ function buildInstructions(localAssetsPath) {
     lines.push('search_fo_artifacts({ query: "customer payment", threshold: 0.6 })');
     lines.push('// If still 0 results, try medium relevance');
     lines.push('search_fo_artifacts({ query: "customer payment", threshold: 0.4 })');
+    lines.push('```');
+    lines.push('');
+    lines.push('**Example exact foName search:**');
+    lines.push('```');
+    lines.push('// When you know the exact artifact name');
+    lines.push('search_fo_artifacts({ query: "currency table", filters: { foName: "Currency" } })');
+    lines.push('// Returns only the "Currency" artifact, ignoring threshold and query text');
     lines.push('```');
     lines.push('');
     lines.push('This ensures you find relevant artifacts even when the initial search is too restrictive.');

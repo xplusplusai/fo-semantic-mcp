@@ -1,0 +1,63 @@
+# v1.2.0: Exact Artifact Matching with foName Filter
+
+**New Feature: Precise F&O Artifact Discovery**
+
+This release introduces the `foName` filter for exact artifact matching - perfect for when you know the specific F&O artifact name and want guaranteed precise results.
+
+## 🆕 What's New
+
+### foName Filter
+- **Exact Match**: Find specific artifacts by exact name (e.g., "CustTable", "SalesTable")
+- **Skip Semantic Search**: When you know the exact name, get instant results
+- **AI Assistant Integration**: Enhanced MCP server with foName examples
+
+### Usage Examples
+```javascript
+// Find specific Currency table
+search_fo_artifacts({
+  query: "currency table",
+  filters: { foName: "Currency" }
+})
+
+// Locate exact customer table
+search_fo_artifacts({
+  query: "customer data",
+  filters: { foName: "CustTable" }
+})
+```
+
+### Technical Enhancements
+- Updated MCP tool schema with filters.foName parameter
+- Enhanced SearchApiClient to pass foName filter to backend
+- Comprehensive documentation updates
+- Added foName examples to MCP server instructions
+
+## 🎯 Perfect For
+- **Development Teams**: Faster artifact lookup with known names
+- **AI Assistants**: Precise artifact matching in automated workflows
+- **Requirements Implementation**: Direct artifact access from specifications
+
+## 📥 Installation
+
+Download the release, extract, and update your MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "fo-semantic-mcp": {
+      "command": "node",
+      "args": ["path/to/fo-semantic-mcp/dist/server.js"],
+      "env": {
+        "FOINDEX_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+## 🔗 Resources
+- **Get API Key**: https://www.xplusplus.ai/
+- **Documentation**: Included in release package
+- **GitHub**: https://github.com/xplusplusai/fo-semantic-mcp
+
+**Ready to accelerate your F&O development with precise artifact matching!** 🚀
