@@ -16,8 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Technical Details
 - Maintains backward compatibility with both older and newer Cursor IDE versions
-- Structured content available for MCP-compliant clients
-- Embedded JSON in text content for clients with structured content display issues
+- Structured content available for older clients with structured content display and MCP protocol compliance
+- Embedded JSON in text content for newer clients with structured content display issues
 - Fixed fullLocalPath usage instructions
 
 ### ⚠️ Compatibility Note
