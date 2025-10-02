@@ -5,6 +5,26 @@ All notable changes to FO Semantic MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2025-10-02
+
+**Critical Threshold Fix**
+
+### Fixed
+- **Default Threshold**: Lowered from 0.75 to 0.5 for better result balance
+- **foName Filter Issues**: Fixed exact matches being filtered out by high thresholds
+- **Configuration Examples**: Updated all examples to use proven 0.5 threshold
+- **AI Instructions**: Enhanced guidance for threshold usage with foName filter
+
+### Enhanced
+- **Adaptive Strategy**: Updated to 0.5 → 0.4 → 0.3 → no threshold progression
+- **Debug Logging**: Added request/response logging for troubleshooting
+- **Documentation**: Comprehensive foName filter usage examples
+
+### Why This Fix Matters
+The original 0.75 threshold was too restrictive and filtered out exact artifact matches even when using the foName filter. This patch ensures reliable exact matching while maintaining semantic search quality.
+
+---
+
 ## [1.2.0] - 2025-10-01
 
 **New Feature: Exact Artifact Matching**
@@ -136,7 +156,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Configuration Options
 - `FOINDEX_API_KEY` - API key authentication
-- `FO_SEARCH_DEFAULT_THRESHOLD` - Default relevance filter (0.75)
+- `FO_SEARCH_DEFAULT_THRESHOLD` - Default relevance filter (0.5)
 - `FO_LOCAL_ASSETS_PATH` - Path to F&O installation
 - `FO_SEARCH_TIMEOUT_MS` - Request timeout (10s)
 - `FO_SEARCH_DEFAULT_LIMIT` - Default result limit (10)

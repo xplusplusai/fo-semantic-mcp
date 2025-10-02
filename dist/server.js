@@ -100,7 +100,7 @@ function buildInstructions(localAssetsPath) {
     lines.push('- `query` (required): Natural language search (e.g., "customer extension", "sales tax calculation")');
     lines.push('- `artifact_types` (optional): Filter ["Table", "Form", "Class", "EDT", "Enum", "DataEntity", "View", "Query"]');
     lines.push('- `limit` (optional): Number of results (default: 10, max: 50)');
-    lines.push('- `threshold` (optional): Minimum relevance score 0-1 to filter results (default: 0.75 for high relevance)');
+    lines.push('- `threshold` (optional): Minimum relevance score 0-1 to filter results (default: 0.5 for balanced relevance)');
     lines.push('- `include_related` (optional): Include semantically related artifacts for broader context');
     lines.push('- `filters` (optional): Advanced filtering options:');
     lines.push('  - `foName` (string): **EXACT MATCH** - Find specific artifact by exact name (e.g., "CustTable", "SalesTable")');
@@ -108,8 +108,8 @@ function buildInstructions(localAssetsPath) {
     lines.push('');
     lines.push('## ADAPTIVE THRESHOLD STRATEGY');
     lines.push('');
-    lines.push('**When search returns 0 results with default threshold (0.75), automatically retry with lower thresholds:**');
-    lines.push('1. **First attempt**: Use default threshold 0.75 (high relevance only)');
+    lines.push('**When search returns 0 results with default threshold (0.5), automatically retry with lower thresholds:**');
+    lines.push('1. **First attempt**: Use default threshold 0.5 (medium-high relevance only)');
     lines.push('2. **If 0 results**: Retry with threshold 0.6 (medium-high relevance)');
     lines.push('3. **If still 0 results**: Retry with threshold 0.4 (medium relevance)');
     lines.push('4. **If still 0 results**: Retry with no threshold (all results)');
@@ -117,9 +117,9 @@ function buildInstructions(localAssetsPath) {
     lines.push('**Example adaptive search pattern:**');
     lines.push('```');
     lines.push('// First try high relevance');
-    lines.push('search_fo_artifacts({ query: "customer payment", threshold: 0.75 })');
+    lines.push('search_fo_artifacts({ query: "customer payment", threshold: 0.5 })');
     lines.push('// If 0 results, try medium-high relevance');
-    lines.push('search_fo_artifacts({ query: "customer payment", threshold: 0.6 })');
+    lines.push('search_fo_artifacts({ query: "customer payment", threshold: 0.5 })');
     lines.push('// If still 0 results, try medium relevance');
     lines.push('search_fo_artifacts({ query: "customer payment", threshold: 0.4 })');
     lines.push('```');
@@ -154,7 +154,12 @@ function buildInstructions(localAssetsPath) {
     lines.push('- **Integrate with module** → Search for module artifacts and patterns');
     lines.push('');
     lines.push('**CRITICAL: Always use adaptive threshold strategy when searches return 0 results.**');
-    lines.push('Do not give up after one search - try progressively lower thresholds (0.75 → 0.6 → 0.4 → no threshold).');
+    lines.push('Do not give up after one search - try progressively lower thresholds (0.5 → 0.4 → 0.3 → no threshold).');
+    lines.push('');
+    lines.push('**IMPORTANT: When using foName filter with high thresholds:**');
+    lines.push('- foName exact matches may still be filtered by relevance threshold');
+    lines.push('- If foName search returns 0 results, try with threshold: 0.0 or remove threshold entirely');
+    lines.push('- Example: search_fo_artifacts({ query: "Currency", filters: { foName: "Currency" }, threshold: 0.0 })');
     lines.push('');
     lines.push('Remember: This tool makes you a better F&O developer by learning from the existing codebase!');
     return lines.join('\n');

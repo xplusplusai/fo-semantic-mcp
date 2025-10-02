@@ -54,6 +54,7 @@ export class SearchApiClient {
         const timeout = setTimeout(() => controller.abort(), this.config.requestTimeoutMs);
         try {
             logger.debug('Issuing search request', { url, body });
+            console.log('DEBUG: Full request body being sent to API:', JSON.stringify(body, null, 2));
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -64,6 +65,7 @@ export class SearchApiClient {
                 signal: controller.signal,
             });
             const raw = (await safeJson(response));
+            console.log('DEBUG: API response received:', JSON.stringify(raw, null, 2));
             if (!response.ok) {
                 const errorMsg = raw.error || `Search API responded with status ${response.status}`;
                 throw new SearchApiError(errorMsg, response.status, suggestForStatus(response.status), raw);
