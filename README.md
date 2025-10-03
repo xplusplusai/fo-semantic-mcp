@@ -84,15 +84,7 @@ Ensure you have **Node.js** installed:
 ### 2. Download & Setup
 
 1. Download the latest release and extract it anywhere on your system
-2. The package includes:
-   - `fo-semantic-mcp-win.cmd` - Windows launcher script
-   - `dist/` - Compiled server files
-   - `node_modules/` - Dependencies (pre-installed)
-   - `package.json` - Project configuration
-
-**Windows:** Use the provided `fo-semantic-mcp-win.cmd` launcher
-
-**macOS/Linux:** Run directly with: `node dist/server.js`
+2. Use correct file and folder path in mcp configuration json
 
 ### 3. Get API Key
 
@@ -232,5 +224,6 @@ This software is licensed for commercial use. See `LICENSE` file for details.
 Built by the team behind [FO-Index](https://www.xplusplus.ai) - the comprehensive knowledge base for Microsoft Dynamics 365 Finance & Operations development.
 
 ---
+
 
 **Ready to supercharge your F&O development?** [Get your API key](https://www.xplusplus.ai) and start building better extensions today! 🎯
