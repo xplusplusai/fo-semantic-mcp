@@ -14,6 +14,8 @@ Transform your F&O development workflow with AI-powered semantic search over 50,
 
 ## 📋 What You Get
 
+✅ **AI-Optimized Workflow** - Proven 6-step methodology for context-aware development
+✅ **Custom Code Awareness** - AI checks your existing extensions before generating code
 ✅ **Semantic Search** - Find F&O artifacts using natural language
 ✅ **50,000+ Artifacts** - Tables, Forms, Classes, EDT, Enums, Data Entities, Views, Queries
 ✅ **AI Summaries** - Understand artifact purpose without reading XML
@@ -29,11 +31,23 @@ Transform your F&O development workflow with AI-powered semantic search over 50,
 - **Architects** understanding system patterns
 - **Teams** accelerating development cycles
 
+## 🚀 v1.3.0 - AI Workflow Enhancement
+
+**AI-Optimized Instructions**: Enhanced MCP server instructions with proven 6-step development workflow ensuring AI always checks user's existing customizations before generating code.
+
+**Key Features:**
+- **🎯 Golden Path Workflow**: AI now follows structured 6-step methodology for every F&O development task
+- **🔧 Custom Code Discovery**: AI automatically searches YOUR workspace for existing extensions before generating code
+- **📊 Context-Aware Generation**: Combines standard D365 patterns with your existing customizations
+- **⚠️ Prevents Conflicts**: Eliminates #1 problem - AI generating code that conflicts with your extensions
+
+**Why This Matters**: AI never generates code blindly - it always checks your existing extensions first, ensuring generated code integrates seamlessly with your current implementation.
+
 ## 🔧 v1.2.1 - Critical Threshold Fix
 
 **Resolved**: Fixed threshold settings that were filtering out exact matches. Updated all examples to use 0.5 threshold for reliable foName filter functionality.
 
-## 🆕 New in v1.2.0
+## 🆕 v1.2.0 - Exact Artifact Matching
 
 **Exact Artifact Matching**: Added `foName` filter for precise artifact lookup when you know the exact F&O artifact name.
 
@@ -51,27 +65,71 @@ Transform your F&O development workflow with AI-powered semantic search over 50,
 
 ---
 
-## 🔥 Real-World AI Assistant Scenarios
+## 🤖 How AI Uses This Tool - The Golden Path Workflow
+
+When you ask AI to help with F&O development, it now follows a **proven 6-step workflow** that ensures context-aware code generation:
+
+### **The Workflow in Action:**
+
+**You:** "Add a custom field to SalesTable form"
+
+**AI follows Golden Path:**
+```
+Step 1: 🔍 Search Standard D365
+        → Finds SalesTable form in Microsoft's implementation
+
+Step 2: 📖 Read Standard Implementation
+        → Reads Microsoft's XML to understand structure and patterns
+
+Step 3: 🔧 Search YOUR Custom Code (Critical!)
+        → Searches YOUR workspace for existing SalesTable extensions
+
+Step 4: 📖 Read YOUR Customizations
+        → Reads your current extensions to understand your style
+
+Step 5: ✨ Generate Context-Aware Code
+        → Creates extension that works with YOUR existing code
+
+Step 6: 💡 Present with Full Context
+        → Shows: Standard artifacts + Your extensions + Generated code
+```
+
+**Result:** Code that integrates perfectly with your existing customizations, not generic code that conflicts with your extensions.
+
+### **Why This Matters:**
+
+**❌ Old Way (Without Golden Path):**
+```
+You: "Add field to SalesTable"
+AI: *searches standard only* → generates code → conflicts with your existing extensions
+```
+
+**✅ New Way (With Golden Path):**
+```
+You: "Add field to SalesTable"
+AI: *searches standard + YOUR code* → generates code that extends YOUR implementation
+```
+
+## 🔥 Real-World Scenarios
 
 **Extension Development:**
 ```
 You: "I need to create a custom validation for sales orders"
-AI: *automatically searches F&O artifacts* "I found SalesTable validation patterns. Let me read the XML files and show you 3 approaches..."
+AI: Step 1-2: *searches + reads standard SalesTable validation*
+    Step 3-4: *finds + reads YOUR existing SalesTable extensions*
+    Step 5-6: "I see you already have SalesTable.Extension1. Here's validation
+              code that extends YOUR implementation..."
 ```
 
 **Learning Existing Code:**
 ```
 You: "How does inventory posting work?"
-AI: *queries relevant artifacts* "Based on InventPosting class and related forms, here's the flow..." *reads actual source files*
+AI: *follows Golden Path* "In standard D365: [shows InventPosting]
+    In YOUR code: [shows your customizations]
+    Here's how they work together..."
 ```
 
-**Best Practices:**
-```
-You: "What's the right way to extend purchase workflows?"
-AI: *finds workflow examples* "Looking at PurchReqWorkflow implementations..." *analyzes local XML*
-```
-
-**🚀 True AI pair programming for F&O** - your AI partner has instant access to the entire F&O codebase and becomes your expert development companion!
+**🚀 True AI pair programming for F&O** - your AI partner has instant access to BOTH the entire F&O codebase AND your existing customizations!
 
 ## ⚡ Quick Start
 
@@ -84,11 +142,7 @@ Ensure you have **Node.js** installed:
 ### 2. Download & Setup
 
 1. Download the latest release and extract it anywhere on your system
-2. The package includes:
-   - `fo-semantic-mcp-win.cmd` - Windows launcher script
-   - `dist/` - Compiled server files
-   - `node_modules/` - Dependencies (pre-installed)
-   - `package.json` - Project configuration
+2. Use correct file and folder path in mcp configuration json
 
 **Windows:** Use the provided `fo-semantic-mcp-win.cmd` launcher
 
