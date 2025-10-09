@@ -5,6 +5,29 @@ All notable changes to FO Semantic MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2025-10-08
+
+**Embedded Instructions - Security Enhancement**
+
+### Changed
+- **Embedded Instructions**: MCP instructions now compiled directly into JavaScript at build time
+- **Security**: Proprietary instruction content no longer exposed as plain text markdown files
+- **Self-Contained**: No external file dependencies - instructions embedded in compiled code
+- **Distribution**: Cleaner release package with only essential runtime files
+
+### Technical Changes
+- Instructions embedded at build time via `embeddedInstructions.js` (30KB compiled)
+- Removed external markdown file dependency from release distribution
+- Instructions compiled into JavaScript bundle, not readable as plain text
+- Maintains full AI guidance capability with enhanced security
+
+### Fixed
+- Release package no longer includes development/documentation files
+- Removed redundant examples folder (configs available in README)
+- Removed MCP instruction markdown from public distribution
+
+---
+
 ## [1.3.0] - 2025-10-08
 
 **AI Workflow Enhancement - The Golden Path**
