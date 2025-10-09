@@ -1,14 +1,10 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { readFileSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { ConfigError, getConfig } from './utils/config.js';
 import { createLogger } from './utils/logger.js';
 import { SearchApiClient } from './services/searchApiClient.js';
 import { registerSearchTool } from './tools/searchFOArtifacts.js';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { EMBEDDED_INSTRUCTIONS } from './embeddedInstructions.js';
 const logger = createLogger('Server');
 async function start() {
     let config;
@@ -51,40 +47,19 @@ async function start() {
     });
 }
 function buildInstructions(localAssetsPath) {
-    try {
-        // Read instruction from external markdown file
-        const instructionPath = join(__dirname, '..', 'docs', 'MCP_instruction_doc', 'MCP_Tool_SearchFOArtifacts_Instructions.md');
-        let instructions = readFileSync(instructionPath, 'utf-8');
-        // Replace placeholder with actual local assets path if configured
-        if (localAssetsPath) {
-            instructions = instructions.replace(/Local F&O assets path: `\[Will be configured\]`/g, `Local F&O assets path: \`${localAssetsPath}\``);
-            instructions = instructions.replace(/fullLocalPath: \[Available when FO_LOCAL_ASSETS_PATH is configured\]/g, `fullLocalPath: Full path to XML file (configured: ${localAssetsPath})`);
-        }
-        else {
-            // Add warning if local assets not configured
-            instructions = instructions.replace(/Local F&O assets path: `\[Will be configured\]`/g, 'Local F&O assets path: `NOT CONFIGURED - Set FO_LOCAL_ASSETS_PATH environment variable`');
-            instructions = instructions.replace(/fullLocalPath: \[Available when FO_LOCAL_ASSETS_PATH is configured\]/g, 'fullLocalPath: NOT AVAILABLE - Configure FO_LOCAL_ASSETS_PATH to read artifact XML files');
-        }
-        return instructions;
+    // Use embedded instructions (compiled into the binary at build time)
+    let instructions = EMBEDDED_INSTRUCTIONS;
+    // Replace placeholder with actual local assets path if configured
+    if (localAssetsPath) {
+        instructions = instructions.replace(/Local F&O assets path: `\[Will be configured\]`/g, `Local F&O assets path: \`${localAssetsPath}\``);
+        instructions = instructions.replace(/fullLocalPath: \[Available when FO_LOCAL_ASSETS_PATH is configured\]/g, `fullLocalPath: Full path to XML file (configured: ${localAssetsPath})`);
     }
-    catch (error) {
-        logger.error('Failed to load instruction document, using fallback', error instanceof Error ? { message: error.message } : error);
-        // Fallback instructions if file cannot be read
-        return `# FO-Index Semantic Search for Dynamics 365 F&O Development
-
-This MCP server provides semantic search over Microsoft Dynamics 365 Finance & Operations artifacts.
-
-## Available Tool
-\`search_fo_artifacts\` - Search F&O artifacts using natural language queries
-
-## Configuration
-Local assets path: ${localAssetsPath || 'NOT CONFIGURED'}
-
-For detailed usage instructions, see docs/MCP_instruction_doc/MCP_Tool_SearchFOArtifacts_Instructions.md
-
-## Error
-The detailed instruction document could not be loaded. Please check server logs.`;
+    else {
+        // Add warning if local assets not configured
+        instructions = instructions.replace(/Local F&O assets path: `\[Will be configured\]`/g, 'Local F&O assets path: `NOT CONFIGURED - Set FO_LOCAL_ASSETS_PATH environment variable`');
+        instructions = instructions.replace(/fullLocalPath: \[Available when FO_LOCAL_ASSETS_PATH is configured\]/g, 'fullLocalPath: NOT AVAILABLE - Configure FO_LOCAL_ASSETS_PATH to read artifact XML files');
     }
+    return instructions;
 }
 start().catch((error) => {
     logger.error('Fatal error starting MCP server', error instanceof Error ? { message: error.message, stack: error.stack } : error);
