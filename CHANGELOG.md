@@ -5,6 +5,31 @@ All notable changes to FO Semantic MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.3] - 2025-10-09
+
+**Critical Fix - MCP Tool Registration**
+
+### Fixed
+- **Tool Registration Failure**: MCP SDK was bundled and obfuscated, breaking protocol compliance
+- **External MCP SDK**: MCP SDK now excluded from bundling (loaded at runtime)
+- **Bundle Size**: Reduced from 5.3MB to 2.3MB by externalizing SDK
+- **Client Detection**: MCP clients now properly detect and list available tools
+
+### Technical Changes
+- Added `--external:@modelcontextprotocol/sdk` to esbuild configuration
+- MCP SDK loads from node_modules at runtime (not bundled)
+- Reserved names for tool response format (content, structuredContent, isError)
+- Maintained full obfuscation for proprietary instruction content only
+
+### Why This Matters
+**Problem**: v1.3.2 bundled and obfuscated the entire MCP SDK, breaking JSON-RPC protocol compliance and tool registration.
+
+**Solution**: Industry best practice - externalize protocol libraries, obfuscate proprietary code only. MCP SDK loads at runtime while instruction content remains fully protected.
+
+**Result**: MCP protocol compliance maintained + proprietary content protected = tools work correctly with IP protection.
+
+---
+
 ## [1.3.2] - 2025-10-08
 
 **Code Obfuscation - Enhanced Security**
