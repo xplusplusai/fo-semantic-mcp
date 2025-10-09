@@ -5,6 +5,41 @@ All notable changes to FO Semantic MCP Server will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.2] - 2025-10-08
+
+**Code Obfuscation - Enhanced Security**
+
+### Changed
+- **Code Obfuscation**: JavaScript code now heavily obfuscated to protect proprietary instruction content
+- **Build Process**: New `build:obfuscated` script using javascript-obfuscator with aggressive settings
+- **Distribution Security**: Instruction content no longer readable as plain text in released code
+- **Bundle Optimization**: Single-file ESM bundle (388KB) obfuscated to 5.2MB with maximum protection
+
+### Security Enhancements
+- Control flow flattening (threshold 0.75)
+- Dead code injection (threshold 0.4)
+- Base64 string array encoding
+- Hexadecimal identifier names
+- Self-defending code
+- String splitting and rotation
+- Object key transformation
+- Function wrapper chains
+
+### Technical Changes
+- New build script: `scripts/build-obfuscated.js`
+- Updated package.json with `build:obfuscated` and `build:release` scripts
+- Output: `dist-obfuscated/server.js` (fully obfuscated, production-ready)
+- Maintains full functionality while protecting intellectual property
+
+### Why This Matters
+**Problem Solved**: MCP instruction content was visible as plain text JavaScript on GitHub, exposing proprietary AI guidance and development methodologies.
+
+**Solution**: Multi-stage build process that embeds instructions at build time, then heavily obfuscates the entire codebase. Result is fully functional but completely unreadable code.
+
+**Security Level**: Instruction content now protected by enterprise-grade JavaScript obfuscation, making reverse engineering extremely difficult while maintaining runtime performance.
+
+---
+
 ## [1.3.1] - 2025-10-08
 
 **Embedded Instructions - Security Enhancement**
