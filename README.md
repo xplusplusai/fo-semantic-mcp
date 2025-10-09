@@ -14,11 +14,12 @@ Transform your F&O development workflow with AI-powered semantic search over 50,
 
 ## 📋 What You Get
 
+✅ **Golden Path Workflow** - AI follows proven 6-step methodology for context-aware F&O development
+✅ **Custom Code Awareness** - AI searches YOUR workspace for existing extensions before generating code
 ✅ **Semantic Search** - Find F&O artifacts using natural language
 ✅ **50,000+ Artifacts** - Tables, Forms, Classes, EDT, Enums, Data Entities, Views, Queries
 ✅ **AI Summaries** - Understand artifact purpose without reading XML
 ✅ **Local File Access** - Read actual F&O XML files for complete analysis
-✅ **Adaptive Thresholds** - Automatically retry searches with lower relevance scores
 ✅ **Multi-Platform** - Works on Windows, macOS, Linux with Node.js
 ✅ **MCP Compatible** - Works with Cursor IDE, Claude Desktop, VS Code
 
@@ -29,49 +30,34 @@ Transform your F&O development workflow with AI-powered semantic search over 50,
 - **Architects** understanding system patterns
 - **Teams** accelerating development cycles
 
-## 🔧 v1.2.1 - Critical Threshold Fix
 
-**Resolved**: Fixed threshold settings that were filtering out exact matches. Updated all examples to use 0.5 threshold for reliable foName filter functionality.
+## 🔥 How AI Uses This - The Golden Path
 
-## 🆕 New in v1.2.0
+AI follows a proven 6-step workflow ensuring code that integrates with YOUR existing F&O extensions:
 
-**Exact Artifact Matching**: Added `foName` filter for precise artifact lookup when you know the exact F&O artifact name.
+**Example: "Add custom field to SalesTable form"**
 
-**Key Features:**
-- **foName Filter**: Find specific artifacts by exact name (e.g., "CustTable", "SalesTable")
-- **AI Assistant Integration**: Enhanced MCP server instructions for exact matching
-- **Improved Precision**: Perfect for when you know exact artifact names from requirements
-
-## ⚠️ Compatibility Note
-
-**Cursor IDE Compatibility**: This version maintains dual-format response support to ensure compatibility across all Cursor IDE versions:
-
-1. **Structured Content** - For older clients with structured content display and MCP protocol compliance
-2. **Embedded JSON in Text** - For newer clients with structured content display issues
-
----
-
-## 🔥 Real-World AI Assistant Scenarios
-
-**Extension Development:**
 ```
-You: "I need to create a custom validation for sales orders"
-AI: *automatically searches F&O artifacts* "I found SalesTable validation patterns. Let me read the XML files and show you 3 approaches..."
+Step 1: 🔍 Search Standard D365
+        → Finds SalesTable form in Microsoft's implementation
+
+Step 2: 📖 Read Standard Implementation
+        → Understands Microsoft's XML structure and patterns
+
+Step 3: 🔧 Search YOUR Custom Code
+        → Searches YOUR workspace for existing SalesTable extensions
+
+Step 4: 📖 Read YOUR Customizations
+        → Learns your coding style and current implementation
+
+Step 5: ✨ Generate Context-Aware Code
+        → Creates extension that works with YOUR existing code
+
+Step 6: 💡 Present with Full Context
+        → Shows: Standard + Your extensions + Generated code
 ```
 
-**Learning Existing Code:**
-```
-You: "How does inventory posting work?"
-AI: *queries relevant artifacts* "Based on InventPosting class and related forms, here's the flow..." *reads actual source files*
-```
-
-**Best Practices:**
-```
-You: "What's the right way to extend purchase workflows?"
-AI: *finds workflow examples* "Looking at PurchReqWorkflow implementations..." *analyzes local XML*
-```
-
-**🚀 True AI pair programming for F&O** - your AI partner has instant access to the entire F&O codebase and becomes your expert development companion!
+**Result:** Code that integrates seamlessly with your existing customizations on first try - no conflicts, no rework.
 
 ## ⚡ Quick Start
 
@@ -84,15 +70,7 @@ Ensure you have **Node.js** installed:
 ### 2. Download & Setup
 
 1. Download the latest release and extract it anywhere on your system
-2. The package includes:
-   - `fo-semantic-mcp-win.cmd` - Windows launcher script
-   - `dist/` - Compiled server files
-   - `node_modules/` - Dependencies (pre-installed)
-   - `package.json` - Project configuration
-
-**Windows:** Use the provided `fo-semantic-mcp-win.cmd` launcher
-
-**macOS/Linux:** Run directly with: `node dist/server.js`
+2. The package includes pre-compiled server files and dependencies
 
 ### 3. Get API Key
 
@@ -137,20 +115,6 @@ Update your MCP client configuration (replace `C:\\Downloads\\` with your extrac
 }
 ```
 
-**Alternative for Windows** - Use the launcher script:
-```json
-{
-  "mcpServers": {
-    "fo-semantic-mcp": {
-      "command": "C:\\Downloads\\fo-semantic-mcp\\fo-semantic-mcp-win.cmd",
-      "env": {
-        "FOINDEX_API_KEY": "your_api_key_here",
-        "FO_LOCAL_ASSETS_PATH": "C:\\Users\\[firstname.lastname]\\AppData\\Local\\Microsoft\\Dynamics365\\10.0.2263.74\\PackagesLocalDirectory"
-      }
-    }
-  }
-}
-```
 
 ## 🔧 Configuration Options
 
@@ -164,7 +128,6 @@ Update your MCP client configuration (replace `C:\\Downloads\\` with your extrac
 
 ## 💡 Example Queries
 
-### Natural Language Search
 ```
 "Find customer payment processing examples"
 "Show me sales order validation patterns"
@@ -173,46 +136,6 @@ Update your MCP client configuration (replace `C:\\Downloads\\` with your extrac
 "Show purchase order approval workflows"
 ```
 
-### Exact Artifact Matching (New in v1.2.0)
-```javascript
-// When you know the exact artifact name
-search_fo_artifacts({
-  query: "currency table",
-  filters: { foName: "Currency" }
-})
-
-// Find specific table by exact name
-search_fo_artifacts({
-  query: "customer data",
-  filters: { foName: "CustTable" }
-})
-
-// Locate exact form
-search_fo_artifacts({
-  query: "sales order form",
-  filters: { foName: "SalesTable" }
-})
-```
-
-## 🔍 Search Features
-
-### Adaptive Threshold Strategy
-AI automatically retries searches with lower thresholds when no results found:
-1. **0.5** - High relevance only
-2. **0.6** - Medium-high relevance
-3. **0.4** - Medium relevance
-4. **No threshold** - All results
-
-### Filter Options
-- **Artifact Types**: Table, Form, Class, EDT, Enum, DataEntity, View, Query
-- **foName Filter**: Exact match by specific F&O artifact name (e.g., "CustTable", "SalesTable")
-- **Result Limits**: 1-50 results per search
-- **Relevance Scoring**: 0-1 semantic similarity scores
-
-### When to Use foName Filter
-- **Known Artifact Names**: When you have exact F&O artifact names from requirements or documentation
-- **Precise Lookup**: Skip semantic matching and get the exact artifact you need
-- **Development Workflow**: Faster artifact discovery when exact names are specified
 
 ## 📖 Documentation
 
