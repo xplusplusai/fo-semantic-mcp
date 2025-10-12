@@ -3,6 +3,9 @@
 npm-debug.log*
 *.tsbuildinfo
 
+# Private development files
+CHANGELOG.md
+
 # Environment files
 .env*
 !.env.example
