@@ -43,7 +43,7 @@ export const SEARCH_TOOL_NAME = 'search_fo_artifacts';
 export function registerSearchTool(server, client, config) {
     server.registerTool(SEARCH_TOOL_NAME, {
         title: 'Search F&O Artifacts',
-        description: 'Semantic search over Microsoft Dynamics 365 Finance & Operations artifacts (tables, forms, classes, etc.).',
+        description: 'Semantic search over Microsoft Dynamics 365 Finance & Operations standard artifacts (tables, forms, classes, etc.). Searches D365 metadata only - does not index user custom code.',
         inputSchema: SearchToolInput.shape,
         outputSchema: SearchToolOutput.shape,
     }, async (args) => {
@@ -105,8 +105,8 @@ function formatSuccessMessage(resultCount, relatedCount, structured) {
     if (relatedCount && relatedCount > 0) {
         parts.push(`Included ${relatedCount} related artifacts.`);
     }
-    parts.push('Use fullLocalPath directly to open files.');
-    // Add structured data as JSON for AI client parsing
+    parts.push('Use fullLocalPath to read artifact XML files.');
+    // Add structured data as JSON
     if (structured) {
         parts.push('\n\nDetailed Results:');
         parts.push(JSON.stringify(structured, null, 2));

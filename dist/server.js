@@ -4,6 +4,7 @@ import { ConfigError, getConfig } from './utils/config.js';
 import { createLogger } from './utils/logger.js';
 import { SearchApiClient } from './services/searchApiClient.js';
 import { registerSearchTool } from './tools/searchFOArtifacts.js';
+import { registerGoldenPathPrompts } from './prompts/goldenPathPrompts.js';
 import { EMBEDDED_INSTRUCTIONS } from './embeddedInstructions.js';
 const logger = createLogger('Server');
 async function start() {
@@ -26,9 +27,14 @@ async function start() {
         version: config.serverVersion,
     }, {
         instructions: buildInstructions(config.localAssetsPath),
+        capabilities: {
+            prompts: {},
+        },
     });
     const searchClient = new SearchApiClient(config);
     registerSearchTool(server, searchClient, config);
+    // Register Golden Path prompts for explicit workflow activation
+    registerGoldenPathPrompts(server);
     server.server.oninitialized = () => {
         logger.info('Client initialization completed.');
     };

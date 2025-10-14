@@ -1,25 +1,22 @@
 # FO Semantic MCP Server
 
-🚀 **The ultimate Model Context Protocol server for Microsoft Dynamics 365 Finance & Operations development**
+🚀 **Model Context Protocol server for Microsoft Dynamics 365 Finance & Operations development**
 
-**Enable true AI pair programming for F&O development!** This MCP server supercharges your AI coding assistant with deep F&O knowledge, enabling AI agents in Cursor IDE, VS Code, and Claude Desktop to automatically query 50,000+ F&O artifacts, analyze local source code, and find relevant examples for your current development task.
+Supercharge your AI coding assistant with deep F&O knowledge. This MCP server enables AI agents in Cursor IDE, Claude Desktop, and VS Code to search 50,000+ F&O artifacts, read local source code, and find relevant examples for your development tasks.
 
-🤖 **How it works:** When you're building F&O extensions, your AI assistant can now automatically:
-- Find similar implementations and patterns in existing F&O code
+🤖 **What it provides:** When building F&O extensions, your AI assistant can:
+- Search F&O artifacts using natural language queries
+- Find similar implementations and patterns in standard D365 code
 - Read actual XML source files from your local F&O installation
-- Understand F&O architecture and suggest best practices
-- Accelerate extension development with relevant examples
+- Access rich metadata about tables, forms, classes, and more
 
-Transform your F&O development workflow with AI-powered semantic search over 50,000+ artifacts. Find examples, understand patterns, and accelerate development with intelligent code discovery.
+## 📋 Features
 
-## 📋 What You Get
-
-✅ **Golden Path Workflow** - AI follows proven 6-step methodology for context-aware F&O development
-✅ **Custom Code Awareness** - AI searches YOUR workspace for existing extensions before generating code
 ✅ **Semantic Search** - Find F&O artifacts using natural language
 ✅ **50,000+ Artifacts** - Tables, Forms, Classes, EDT, Enums, Data Entities, Views, Queries
-✅ **AI Summaries** - Understand artifact purpose without reading XML
+✅ **AI Descriptions** - Understand artifact purpose without reading XML
 ✅ **Local File Access** - Read actual F&O XML files for complete analysis
+✅ **Rich Metadata** - Business domains, modules, configuration keys, usage context
 ✅ **Multi-Platform** - Works on Windows, macOS, Linux with Node.js
 ✅ **MCP Compatible** - Works with Cursor IDE, Claude Desktop, VS Code
 
@@ -30,34 +27,25 @@ Transform your F&O development workflow with AI-powered semantic search over 50,
 - **Architects** understanding system patterns
 - **Teams** accelerating development cycles
 
+## 🔧 What's Included
 
-## 🔥 How AI Uses This - The Golden Path
+### MCP Tool: `search_FO_artifacts`
+Search Microsoft D365 F&O standard artifacts semantically. Returns artifact metadata including:
+- Artifact name, type, and module
+- AI-generated descriptions and usage context
+- Business domain classification
+- Local file paths (if configured)
 
-AI follows a proven 6-step workflow ensuring code that integrates with YOUR existing F&O extensions:
+### MCP Prompt: `fo-development-assistant` (Claude Desktop only)
+A complete 6-step development workflow for F&O customizations:
+1. Search standard D365 artifacts
+2. Read standard implementations
+3. Search your workspace for custom code
+4. Read your customizations
+5. Generate context-aware solutions
+6. Present comprehensive analysis
 
-**Example: "Add custom field to SalesTable form"**
-
-```
-Step 1: 🔍 Search Standard D365
-        → Finds SalesTable form in Microsoft's implementation
-
-Step 2: 📖 Read Standard Implementation
-        → Understands Microsoft's XML structure and patterns
-
-Step 3: 🔧 Search YOUR Custom Code
-        → Searches YOUR workspace for existing SalesTable extensions
-
-Step 4: 📖 Read YOUR Customizations
-        → Learns your coding style and current implementation
-
-Step 5: ✨ Generate Context-Aware Code
-        → Creates extension that works with YOUR existing code
-
-Step 6: 💡 Present with Full Context
-        → Shows: Standard + Your extensions + Generated code
-```
-
-**Result:** Code that integrates seamlessly with your existing customizations on first try - no conflicts, no rework.
+**Note:** The prompt workflow is user-invoked and works in Claude Desktop. In Cursor IDE, you can guide the AI through similar steps manually.
 
 ## ⚡ Quick Start
 
@@ -70,7 +58,8 @@ Ensure you have **Node.js** installed:
 ### 2. Download & Setup
 
 1. Download the latest release and extract it anywhere on your system
-2. The package includes pre-compiled server files and dependencies
+2. The package includes pre-compiled server files
+3. Run `npm install` in the extracted folder to install dependencies
 
 ### 3. Get API Key
 
@@ -80,70 +69,121 @@ Visit our website to view available plans and pricing.
 
 ### 4. Configure
 
-Update your MCP client configuration (replace `C:\\Downloads\\` with your extraction path):
+Update your MCP client configuration (replace paths with your actual paths):
 
-**Cursor IDE** (`~/.cursor/mcp.json`):
+**Cursor IDE** (`~/.cursor/mcp.json` or `%USERPROFILE%\.cursor\mcp.json`):
 ```json
 {
   "mcpServers": {
     "fo-semantic-mcp": {
       "command": "node",
-      "args": ["C:\\Downloads\\fo-semantic-mcp\\dist\\server.js"],
+      "args": ["C:\\path\\to\\fo-semantic-mcp\\dist\\server.js"],
       "env": {
         "FOINDEX_API_KEY": "your_api_key_here",
-        "FO_SEARCH_DEFAULT_THRESHOLD": "0.5",
-        "FO_LOCAL_ASSETS_PATH": "C:\\Users\\[firstname.lastname]\\AppData\\Local\\Microsoft\\Dynamics365\\10.0.2263.74\\PackagesLocalDirectory"
+        "FO_LOCAL_ASSETS_PATH": "C:\\Users\\YourName\\AppData\\Local\\Microsoft\\Dynamics365\\10.0.xxxx\\PackagesLocalDirectory"
       }
     }
   }
 }
 ```
 
-**Claude Desktop** (`~/AppData/Roaming/Claude/claude_desktop_config.json`):
+**Claude Desktop** (`~/AppData/Roaming/Claude/claude_desktop_config.json` on Windows):
 ```json
 {
   "mcpServers": {
     "fo-semantic-mcp": {
       "command": "node",
-      "args": ["C:\\Downloads\\fo-semantic-mcp\\dist\\server.js"],
+      "args": ["C:\\path\\to\\fo-semantic-mcp\\dist\\server.js"],
       "env": {
         "FOINDEX_API_KEY": "your_api_key_here",
-        "FO_LOCAL_ASSETS_PATH": "C:\\Users\\[firstname.lastname]\\AppData\\Local\\Microsoft\\Dynamics365\\10.0.2263.74\\PackagesLocalDirectory"
+        "FO_LOCAL_ASSETS_PATH": "C:\\Users\\YourName\\AppData\\Local\\Microsoft\\Dynamics365\\10.0.xxxx\\PackagesLocalDirectory"
       }
     }
   }
 }
 ```
 
+**macOS/Linux** paths use forward slashes: `/Users/yourname/path/to/fo-semantic-mcp/dist/server.js`
+
+### 5. Restart Your AI Client
+
+Completely restart Cursor IDE or Claude Desktop to load the MCP server.
 
 ## 🔧 Configuration Options
 
-| Variable | Description | Default | Example |
-|----------|-------------|---------|---------|
-| `FOINDEX_API_KEY` | **Required** - Your API key | - | `your_api_key_here` |
-| `FO_SEARCH_DEFAULT_THRESHOLD` | Relevance filter (0-1) | `0.5` | `0.5` |
-| `FO_LOCAL_ASSETS_PATH` | Path to F&O PackagesLocalDirectory | Optional | `C:\Users\[firstname.lastname]\AppData\Local\Microsoft\Dynamics365\10.0.2263.74\PackagesLocalDirectory` |
-| `FO_SEARCH_TIMEOUT_MS` | Request timeout | `10000` | `10000` |
-| `FO_SEARCH_DEFAULT_LIMIT` | Default result limit | `10` | `10` |
+| Variable | Description | Default | Required |
+|----------|-------------|---------|----------|
+| `FOINDEX_API_KEY` | Your API key from xplusplus.ai | - | ✅ Yes |
+| `FO_LOCAL_ASSETS_PATH` | Path to F&O PackagesLocalDirectory | - | Recommended |
+| `FO_SEARCH_DEFAULT_THRESHOLD` | Relevance filter (0-1) | `0.5` | No |
+| `FO_SEARCH_TIMEOUT_MS` | Request timeout (milliseconds) | `10000` | No |
+| `FO_SEARCH_DEFAULT_LIMIT` | Default result limit | `10` | No |
+| `FO_SEARCH_MAX_LIMIT` | Maximum result limit | `50` | No |
 
-## 💡 Example Queries
+### Finding Your PackagesLocalDirectory
 
+**Windows:**
 ```
-"Find customer payment processing examples"
-"Show me sales order validation patterns"
-"Search for inventory transaction handling"
-"Find examples of data entity extensions"
-"Show purchase order approval workflows"
+C:\Users\[YourName]\AppData\Local\Microsoft\Dynamics365\[version]\PackagesLocalDirectory
 ```
 
+**PowerShell command to find it:**
+```powershell
+Get-ChildItem "$env:LOCALAPPDATA\Microsoft\Dynamics365\" -Recurse -Filter "PackagesLocalDirectory" | Select-Object FullName
+```
 
-## 📖 Documentation
+## 💡 Example Usage
 
-- **Getting Started**: See `docs/GETTING_STARTED.md`
+### Basic Searches
+```
+"Find customer tables in D365"
+"Show me sales order forms"
+"Search for pricing calculation classes"
+"Find inventory transaction data entities"
+```
+
+### Artifact Type Filters
+You can filter by artifact type for more focused results:
+- Tables
+- Forms
+- Classes
+- EDT (Extended Data Types)
+- Enums
+- DataEntity
+- Views
+- Queries
+
+### In Claude Desktop
+Use the `fo-development-assistant` prompt for guided F&O development workflows.
+
+### In Cursor IDE
+Ask your AI assistant to search F&O artifacts, then guide it to:
+1. Search standard D365 implementations
+2. Search your workspace for custom code
+3. Combine insights for context-aware solutions
+
+## 📖 What's New in v2.0
+
+### Breaking Changes
+- ✅ **Simplified architecture** - Server instructions now provide concise tool documentation only
+- ✅ **Clean tool responses** - Returns data without workflow checklists
+- ✅ **Single prompt** - One clear `fo-development-assistant` prompt (was 2 confusing prompts)
+- ✅ **Removed obfuscation** - Standard TypeScript build for transparency
+- ✅ **Production-ready package** - Only essential runtime files included
+
+### Improvements
+- ✅ **Honest capabilities** - Clear about what works automatically vs manually
+- ✅ **Better MCP alignment** - Follows proper MCP architecture patterns
+- ✅ **Simpler codebase** - Easier to understand and maintain
+- ✅ **Cleaner release** - No development artifacts or intermediate files
+
+### Migration from v1.x
+No breaking API changes - just update your installation and restart your AI client.
 
 ## 🆘 Support
 
 - **Issues**: Report bugs and feature requests on GitHub
+- **Documentation**: See `docs/GETTING_STARTED.md` for detailed setup
 - **Enterprise**: Contact contact@xplusplus.ai for custom solutions
 
 ## 📄 License
@@ -156,4 +196,4 @@ Built by the team behind [FO-Index](https://www.xplusplus.ai) - the comprehensiv
 
 ---
 
-**Ready to supercharge your F&O development?** [Get your API key](https://www.xplusplus.ai) and start building better extensions today! 🎯
+**Ready to enhance your F&O development?** [Get your API key](https://www.xplusplus.ai) and start today! 🎯
