@@ -199,7 +199,6 @@ node dist/server.js
 
 - **Issues**: Report bugs at [GitHub Issues](https://github.com/xplusplusai/fo-semantic-mcp/issues)
 - **Documentation**: See main [README](../README.md) for detailed features
-- **Changelog**: See [CHANGELOG](../CHANGELOG.md) for version history
 - **Support**: contact@xplusplus.ai
 
 ## 📖 What's New in v2.0
@@ -210,7 +209,7 @@ node dist/server.js
 - ✅ Honest documentation about capabilities
 - ✅ Production-ready package structure
 
-See [CHANGELOG.md](../CHANGELOG.md) for full details.
+See [GitHub Releases](https://github.com/xplusplusai/fo-semantic-mcp/releases) for version history.
 
 ---
 
