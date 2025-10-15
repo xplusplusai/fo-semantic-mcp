@@ -164,7 +164,7 @@ Ask your AI assistant to search F&O artifacts, then guide it to:
 
 ## 🎬 Live Demo
 
-**See it in action!** Check out our [Real-Life Demo](docs/demo/index.html) showing how an AI agent uses the MCP server to complete a full D365 F&O customization task - from natural language request to working code.
+**See it in action!** Check out our [Real-Life Demo](https://www.xplusplus.ai/mcp-demo.html) showing how an AI agent uses the MCP server to complete a full D365 F&O customization task - from natural language request to working code.
 
 **Task:** "Create a new field 'External name' on vendor group table and add it to form general tab"
 
@@ -175,7 +175,7 @@ Ask your AI assistant to search F&O artifacts, then guide it to:
 - Generating complete table and form extensions
 - All in a single session with proper D365 patterns
 
-👉 [**View the Complete Demo**](docs/demo/index.html)
+👉 [**View the Complete Demo**](https://www.xplusplus.ai/mcp-demo.html)
 
 ## 📖 What's New in v2.0
 
