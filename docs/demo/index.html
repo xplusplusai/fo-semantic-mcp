@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real-life demonstration of AI-assisted D365 F&O development using FO Semantic MCP Server">
+    <title>FO Semantic MCP - Real-Life Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Real-Life Demo: AI-Assisted D365 F&O Development</h1>
+            <p class="subtitle">Watch how an AI agent uses the FO Semantic MCP Server to complete a D365 F&O customization task</p>
+            <nav class="breadcrumb">
+                <a href="../../README.md">Home</a> /
+                <a href="../GETTING_STARTED.md">Getting Started</a> /
+                <span>Live Demo</span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <h2>📋 The Task</h2>
+            <div class="task-box">
+                <p><strong>User Request:</strong></p>
+                <blockquote>
+                    "Create a new field 'External name' on vendor group table if it is not exist, and add it to form general tab"
+                </blockquote>
+            </div>
+
+            <div class="info-box">
+                <h3>What You'll See:</h3>
+                <ul>
+                    <li>✅ AI using <code>search_fo_artifacts</code> MCP tool to find standard D365 artifacts</li>
+                    <li>✅ AI reading standard XML files via <code>fullLocalPath</code></li>
+                    <li>✅ AI searching user's workspace for existing customizations</li>
+                    <li>✅ AI generating complete table and form extensions following D365 patterns</li>
+                    <li>✅ Complete implementation delivered in a single session</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Step 1 -->
+        <section class="step">
+            <div class="step-header">
+                <span class="step-number">Step 1</span>
+                <h3>Initial Search for VendGroup Table</h3>
+            </div>
+            <div class="step-content">
+                <img src="images/1.png" alt="Step 1: Initial MCP tool call to search for VendGroup table">
+                <div class="step-description">
+                    <h4>What's Happening:</h4>
+                    <ul>
+                        <li>AI breaks down the user request into actionable steps</li>
+                        <li>First action: Find the VendGroup table in standard D365</li>
+                        <li>Uses <code>search_fo_artifacts</code> with query: <em>"VendGroup vendor group table"</em></li>
+                    </ul>
+
+                    <h4>Result:</h4>
+                    <p>Found 5 artifacts, including <strong>VendVendorGroupStaging</strong> table. AI recognizes this is a staging table, not the actual VendGroup table.</p>
+
+                    <div class="highlight">
+                        <strong>🔍 Key Observation:</strong> The AI demonstrates intelligent refinement - it recognizes the initial results aren't quite right and prepares to search again.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2 -->
+        <section class="step">
+            <div class="step-header">
+                <span class="step-number">Step 2</span>
+                <h3>Refined Search with Better Query</h3>
+            </div>
+            <div class="step-content">
+                <img src="images/2.png" alt="Step 2: Refined search for actual VendGroup table">
+                <div class="step-description">
+                    <h4>What's Happening:</h4>
+                    <ul>
+                        <li>AI recognizes staging table isn't what's needed</li>
+                        <li>Refines query to: <em>"VendGroup table vendor classification group"</em></li>
+                        <li>Uses more specific terminology to find the base table</li>
+                    </ul>
+
+                    <h4>Result:</h4>
+                    <p>Found the actual <strong>VendGroup</strong> table with <code>fullLocalPath</code> to the XML file.</p>
+
+                    <div class="highlight">
+                        <strong>💡 MCP Tool Value:</strong> The tool provides the exact file path to standard D365 metadata that the AI couldn't otherwise access.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 3 -->
+        <section class="step">
+            <div class="step-header">
+                <span class="step-number">Step 3</span>
+                <h3>Search for VendGroup Form</h3>
+            </div>
+            <div class="step-content">
+                <img src="images/3.png" alt="Step 3: Search for VendGroup form">
+                <div class="step-description">
+                    <h4>What's Happening:</h4>
+                    <ul>
+                        <li>AI now needs to find the VendGroup form to add the field to the General tab</li>
+                        <li>Uses <code>search_fo_artifacts</code> with query: <em>"VendGroup form vendor classification"</em></li>
+                        <li>Plans next steps: check for existing extensions, read standard implementations</li>
+                    </ul>
+
+                    <h4>Result:</h4>
+                    <p>Found <strong>VendGroup Form</strong> artifact with full metadata and file path.</p>
+
+                    <div class="highlight">
+                        <strong>🎯 Workflow Pattern:</strong> AI is following a systematic approach - find table, find form, check customizations, then implement.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 4 -->
+        <section class="step">
+            <div class="step-header">
+                <span class="step-number">Step 4</span>
+                <h3>Reading Standard Files & Checking Workspace</h3>
+            </div>
+            <div class="step-content">
+                <img src="images/4.png" alt="Step 4: Reading F&O asset files via fullLocalPath">
+                <div class="step-description">
+                    <h4>What's Happening:</h4>
+                    <ul>
+                        <li><strong>Critical moment:</strong> AI uses the <code>fullLocalPath</code> provided by MCP tool</li>
+                        <li>Reads actual VendGroup.xml files to understand structure</li>
+                        <li>Searches user's workspace for existing VendGroup extensions</li>
+                        <li>No existing extension found - will need to create new files</li>
+                    </ul>
+
+                    <div class="highlight">
+                        <strong>🔑 This is the Core Value:</strong> The MCP tool bridges the gap between AI and local D365 metadata. The AI can now read the actual standard implementation instead of guessing or hallucinating.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 5 -->
+        <section class="step">
+            <div class="step-header">
+                <span class="step-number">Step 5</span>
+                <h3>Understanding Form Structure & Patterns</h3>
+            </div>
+            <div class="step-content">
+                <img src="images/5.png" alt="Step 5: AI researching form structure and patterns">
+                <div class="step-description">
+                    <h4>What's Happening:</h4>
+                    <ul>
+                        <li>AI reads CustParameters table extension to understand extension patterns</li>
+                        <li>Searches for "General tab" structure in VendGroup form</li>
+                        <li>Uses grep to find General tab naming conventions</li>
+                        <li>Reads CustTable form to understand similar implementations</li>
+                    </ul>
+
+                    <h4>Result:</h4>
+                    <p>AI learns D365 patterns: TabGeneral naming, FastTab structure, field group organization.</p>
+
+                    <div class="highlight">
+                        <strong>🧠 Context-Aware Development:</strong> The AI isn't just writing code - it's learning from existing patterns in both standard D365 and user's customizations.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 6 -->
+        <section class="step">
+            <div class="step-header">
+                <span class="step-number">Step 6</span>
+                <h3>Creating Extensions</h3>
+            </div>
+            <div class="step-content">
+                <img src="images/6.png" alt="Step 6: AI creates table and form extensions">
+                <div class="step-description">
+                    <h4>What's Happening:</h4>
+                    <ul>
+                        <li>AI creates <strong>VendGroup table extension</strong> with new field</li>
+                        <li>AI creates <strong>VendGroup form extension</strong> adding field to General tab</li>
+                        <li>Both files shown as "new" with line counts (+25 lines each)</li>
+                        <li>Proper XML structure following D365 conventions</li>
+                    </ul>
+
+                    <h4>Key Details:</h4>
+                    <ul>
+                        <li>Field uses <code>Name</code> extended data type (EDT)</li>
+                        <li>Form control bound to VendGroup data source</li>
+                        <li>Placed in TabGeneral (General tab) as requested</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 7 -->
+        <section class="step">
+            <div class="step-header">
+                <span class="step-number">Step 7</span>
+                <h3>Complete Summary & Next Steps</h3>
+            </div>
+            <div class="step-content">
+                <img src="images/7.png" alt="Step 7: Final summary and next steps">
+                <div class="step-description">
+                    <h4>What's Delivered:</h4>
+
+                    <div class="summary-box">
+                        <h5>1. Table Extension</h5>
+                        <ul>
+                            <li>Added field to VendGroup table</li>
+                            <li>Field Type: String (using Name EDT)</li>
+                            <li>Label: "External name"</li>
+                            <li>Help Text: "External name for vendor group"</li>
+                        </ul>
+
+                        <h5>2. Form Extension</h5>
+                        <ul>
+                            <li>Added field to VendGroup form</li>
+                            <li>Placed in TabGeneral (General tab)</li>
+                            <li>Bound to VendGroup data source</li>
+                        </ul>
+
+                        <h5>3. Next Steps Provided</h5>
+                        <ol>
+                            <li>Build the model in Visual Studio</li>
+                            <li>Synchronize database to create the new field</li>
+                            <li>Test in UI (Accounts Payable > Setup > Vendor groups)</li>
+                            <li>Add to source control when verified</li>
+                        </ol>
+                    </div>
+
+                    <div class="highlight success">
+                        <strong>✅ Task Complete:</strong> From a simple natural language request to complete, correct implementation - all in a single AI session with MCP tool assistance.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="conclusion">
+            <h2>🎓 What This Demonstrates</h2>
+
+            <div class="demo-insights">
+                <div class="insight-card">
+                    <h3>🔍 Semantic Search Works</h3>
+                    <p>The AI successfully found relevant D365 artifacts using natural language queries, even refining searches when needed.</p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>📁 File Access is Critical</h3>
+                    <p>The <code>fullLocalPath</code> field enabled the AI to read actual standard implementations instead of guessing structure.</p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>🧩 Pattern Recognition</h3>
+                    <p>AI learned from both standard D365 code and user's existing customizations to generate context-aware solutions.</p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>⚡ Iterative Workflow</h3>
+                    <p>The tool supported an exploratory workflow - search, read, search again, read more, implement.</p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>✨ Complete Implementation</h3>
+                    <p>From request to working code in minutes, with proper XML structure, naming conventions, and actionable next steps.</p>
+                </div>
+
+                <div class="insight-card">
+                    <h3>🎯 No Hallucination</h3>
+                    <p>AI didn't make up field names, table structures, or form designs - it looked them up using real metadata.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>🚀 Try It Yourself</h2>
+            <p>Ready to experience AI-assisted D365 F&O development?</p>
+            <div class="cta-buttons">
+                <a href="../GETTING_STARTED.md" class="btn btn-primary">Get Started Guide</a>
+                <a href="https://github.com/xplusplusai/fo-semantic-mcp" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FO Semantic MCP Server | <a href="../../README.md">Documentation</a> | <a href="https://github.com/xplusplusai/fo-semantic-mcp/releases">Releases</a></p>
+        </div>
+    </footer>
+</body>
+</html>
