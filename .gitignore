@@ -3,8 +3,12 @@
 npm-debug.log*
 *.tsbuildinfo
 
-# Private development files
+# Private development files and documentation
+# (These should be in the dev folder, not release)
 CHANGELOG.md
+CICD_PIPELINE_EXPLAINED.md
+MCP_REGISTRY_PUBLISHING.md
+WORKFLOW_SETUP_NEEDED.md
 
 # Environment files
 .env*

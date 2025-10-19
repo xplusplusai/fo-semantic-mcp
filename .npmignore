@@ -1,0 +1,81 @@
+# .npmignore - Controls what gets published to npm
+# Only production-ready files should be published to users
+
+# SECURITY: Never publish tokens or credentials
+.mcpregistry_*
+*.token
+*.key
+*.pem
+.env*
+
+# Development documentation (keep on GitHub, exclude from npm)
+CICD_PIPELINE_EXPLAINED.md
+MCP_REGISTRY_PUBLISHING.md
+WORKFLOW_SETUP_NEEDED.md
+
+# MCP Publisher executables (not needed by users)
+mcp-publisher*
+*.exe
+*.tar.gz
+
+# GitHub-specific files (not needed by end users)
+.github/
+.git/
+.gitignore
+
+# Source maps (optional - uncomment if you want to exclude them)
+# *.map
+
+# Development and build files
+node_modules/
+src/
+tsconfig.json
+tsconfig.*.json
+scripts/
+
+# Test files
+test/
+tests/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+
+# Build artifacts that shouldn't be published
+dist-obfuscated/
+build/
+coverage/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Documentation that's development-only
+CHANGELOG.md
+
+# Files to INCLUDE (explicitly - everything else excluded by default):
+# ✅ README.md - User documentation
+# ✅ LICENSE - Required
+# ✅ package.json - Required
+# ✅ server.json - MCP registry metadata
+# ✅ dist/ - Production build
+# ✅ docs/GETTING_STARTED.md - User guide
