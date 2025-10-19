@@ -26,4 +26,7 @@ test-*
 
 # Local notes
 .git-config-note.md
-GITHUB_SETUP.md
+GITHUB_SETUP.md.mcpregistry_*
+mcp-publisher*
+.mcpregistry_*
+mcp-publisher*
