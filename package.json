@@ -2,6 +2,7 @@
   "name": "fo-semantic-mcp",
   "version": "2.0.0",
   "description": "Model Context Protocol server providing semantic search over Dynamics 365 F&O artifacts.",
+  "mcpName": "io.github.xplusplusai/fo-semantic-mcp",
   "type": "module",
   "main": "./dist/server.js",
   "scripts": {
@@ -17,9 +18,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/fo-semantic-mcp.git"
+    "url": "https://github.com/xplusplusai/fo-semantic-mcp.git"
   },
-  "author": "Your Name",
+  "author": "XPLUSPLUS.AI",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
