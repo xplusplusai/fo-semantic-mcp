@@ -21,18 +21,10 @@ function emit(level, message, meta, scope) {
     const prefix = scope ? `[${scope}]` : '';
     const payload = message instanceof Error ? { error: serializeError(message), meta } : { message, meta };
     const line = `${time} ${level.toUpperCase()} ${prefix}`.trim();
-    switch (level) {
-        case 'debug':
-        case 'info':
-            console.log(line, payload);
-            break;
-        case 'warn':
-            console.warn(line, payload);
-            break;
-        case 'error':
-            console.error(line, payload);
-            break;
-    }
+    // CRITICAL: MCP STDIO protocol requires ALL logs to go to STDERR (not STDOUT)
+    // STDOUT is reserved exclusively for JSON-RPC messages
+    // All logging levels must use console.error() to write to STDERR
+    console.error(line, payload);
 }
 function normaliseLevel(rawLevel) {
     switch ((rawLevel || '').toLowerCase()) {

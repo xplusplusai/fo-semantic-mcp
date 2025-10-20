@@ -38,7 +38,7 @@ export function getConfig() {
             defaultThreshold = parsed;
         }
         else {
-            console.warn(`Warning: Threshold must be between 0 and 1. Got: ${rawThreshold}. Ignoring.`);
+            console.error(`Warning: Threshold must be between 0 and 1. Got: ${rawThreshold}. Ignoring.`);
         }
     }
     let localAssetsPath;
@@ -47,8 +47,8 @@ export function getConfig() {
         const resolved = resolve(rawPath);
         if (!existsSync(resolved)) {
             // Log warning but don't fail - local assets are optional
-            console.warn(`Warning: F&O installation not found at path: ${resolved}`);
-            console.warn('Local file reading will not be available, but search functionality will work.');
+            console.error(`Warning: F&O installation not found at path: ${resolved}`);
+            console.error('Local file reading will not be available, but search functionality will work.');
             // Don't set localAssetsPath if directory doesn't exist
         }
         else {
