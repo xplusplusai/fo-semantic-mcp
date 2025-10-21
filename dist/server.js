@@ -7,14 +7,10 @@ import { SearchApiClient } from './services/searchApiClient.js';
 import { registerSearchTool } from './tools/searchFOArtifacts.js';
 import { registerGoldenPathPrompts } from './prompts/goldenPathPrompts.js';
 import { EMBEDDED_INSTRUCTIONS } from './embeddedInstructions.js';
-// Force UTF-8 encoding for STDIO on Windows (fixes emoji/UTF-8 character corruption)
-// On Windows, Node.js defaults to Windows-1252 which corrupts UTF-8 multi-byte characters
-if (process.stdout.setDefaultEncoding) {
-    process.stdout.setDefaultEncoding('utf8');
-}
-if (process.stdin.setEncoding) {
-    process.stdin.setEncoding('utf8');
-}
+// NOTE: We do NOT set encoding on stdin/stdout here because the MCP SDK's StdioServerTransport
+// handles its own encoding for the JSON-RPC protocol. Setting encoding at this level would
+// interfere with the binary message framing that MCP uses.
+// Logger messages go to STDERR (not STDOUT), so they don't interfere with MCP protocol.
 const logger = createLogger('Server');
 async function start() {
     let config;

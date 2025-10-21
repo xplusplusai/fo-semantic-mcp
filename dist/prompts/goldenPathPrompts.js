@@ -51,7 +51,7 @@ export function registerGoldenPathPrompts(server) {
  * Build the Golden Path workflow prompt that AI clients will see and follow
  */
 function buildGoldenPathPrompt(userRequest) {
-    return `🎯 **GOLDEN PATH F&O DEVELOPMENT WORKFLOW ACTIVATED**
+    return `**GOLDEN PATH F&O DEVELOPMENT WORKFLOW ACTIVATED**
 
 User Request: "${userRequest}"
 
@@ -59,7 +59,7 @@ User Request: "${userRequest}"
 
 ---
 
-## ✅ STEP 1: SEARCH STANDARD D365 ARTIFACTS
+## STEP 1: SEARCH STANDARD D365 ARTIFACTS
 
 **Action:** Use \`search_FO_artifacts\` MCP tool to find relevant Microsoft standard implementations.
 
@@ -69,7 +69,7 @@ User Request: "${userRequest}"
 
 ---
 
-## ✅ STEP 2: READ STANDARD IMPLEMENTATION
+## STEP 2: READ STANDARD IMPLEMENTATION
 
 **Action:** Use \`read_file\` on standard artifact paths (from Step 1 results).
 
@@ -79,19 +79,19 @@ User Request: "${userRequest}"
 
 ---
 
-## ✅ STEP 3: SEARCH USER'S WORKSPACE (AUTOMATIC!)
+## STEP 3: SEARCH USER'S WORKSPACE (AUTOMATIC!)
 
 **Action:** Use \`glob_file_search\` or \`codebase_search\` to find user's existing customizations.
 
 **Purpose:** Discover what the user has already implemented - this is CRITICAL to avoid missing context.
 
-**⚠️ IMPORTANT:** This step is AUTOMATIC - I will NOT wait for the user to ask about their customizations!
+**IMPORTANT:** This step is AUTOMATIC - I will NOT wait for the user to ask about their customizations!
 
 **I will search for:** [Describe workspace search patterns based on Step 1 findings]
 
 ---
 
-## ✅ STEP 4: READ USER'S CUSTOM CODE
+## STEP 4: READ USER'S CUSTOM CODE
 
 **Action:** Use \`read_file\` on all custom files found in Step 3.
 
@@ -101,7 +101,7 @@ User Request: "${userRequest}"
 
 ---
 
-## ✅ STEP 5: SYNTHESIZE SOLUTION
+## STEP 5: SYNTHESIZE SOLUTION
 
 **Action:** Combine Microsoft's standard patterns (Step 2) with user's existing code context (Step 4).
 
@@ -111,52 +111,52 @@ User Request: "${userRequest}"
 
 ---
 
-## ✅ STEP 6: PRESENT WITH FULL CONTEXT
+## STEP 6: PRESENT WITH FULL CONTEXT
 
 **Action:** Show comprehensive results with clear categorization and actionable recommendations.
 
 **I will present:**
 
-### 📦 Standard D365 Artifacts Found
+### Standard D365 Artifacts Found
 - List all relevant standard artifacts with context (module, purpose, type)
 
-### 🔧 Your Customizations
-- ✅ What you've already customized (highlight with 🔧)
-- ⚠️ What you haven't extended yet (with reasoning)
+### Your Customizations
+- What you've already customized
+- What you haven't extended yet (with reasoning)
 
-### 💡 Gap Analysis
+### Gap Analysis
 - Compare what you have vs what you need
 - Explain implications of any gaps
 
-### 📝 Generated Code/Recommendations
+### Generated Code/Recommendations
 - Code examples following Microsoft's patterns
 - Adapted to your naming conventions and structure
 - Explanation of why this approach works
 
-### 📋 Next Steps
+### Next Steps
 - Clear, actionable steps to implement
 - File paths ready for editing
 - Testing recommendations
 
 ---
 
-## 🚨 CRITICAL RULES I WILL FOLLOW:
+## CRITICAL RULES I WILL FOLLOW:
 
-- ❌ **NEVER skip Steps 3 & 4** - Workspace search is MANDATORY and AUTOMATIC
-- ❌ **NEVER generate code** without first reading standard implementation
-- ❌ **NEVER present results** without checking user's existing customizations
-- ❌ **NEVER guess** at XML structure or X++ patterns - always read actual code
-- ✅ **ALWAYS present side-by-side** comparison of standard vs custom
-- ✅ **ALWAYS explain the "why"** behind recommendations
-- ✅ **ALWAYS reference** which standard file the pattern came from
+- **NEVER skip Steps 3 & 4** - Workspace search is MANDATORY and AUTOMATIC
+- **NEVER generate code** without first reading standard implementation
+- **NEVER present results** without checking user's existing customizations
+- **NEVER guess** at XML structure or X++ patterns - always read actual code
+- **ALWAYS present side-by-side** comparison of standard vs custom
+- **ALWAYS explain the "why"** behind recommendations
+- **ALWAYS reference** which standard file the pattern came from
 
 ---
 
-## 🎯 STARTING WORKFLOW NOW...
+## STARTING WORKFLOW NOW...
 
 I will now execute all 6 steps in sequence and provide a comprehensive response that includes:
 1. Standard artifacts discovered
-2. Your existing customizations (with 🔧 markers)
+2. Your existing customizations
 3. Gap analysis
 4. Generated solution with full explanation
 5. Next steps for implementation
