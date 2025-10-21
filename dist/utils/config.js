@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 const DEFAULT_TIMEOUT_MS = 10_000;
 const DEFAULT_LIMIT = 10;
 const HARD_LIMIT = 50;
-const DEFAULT_SERVER_VERSION = '2.0.6';
+const DEFAULT_SERVER_VERSION = '2.0.8';
 const DEFAULT_THRESHOLD = undefined; // No threshold by default - return all results
 let cachedConfig = null;
 export class ConfigError extends Error {
