@@ -7,6 +7,14 @@ import { SearchApiClient } from './services/searchApiClient.js';
 import { registerSearchTool } from './tools/searchFOArtifacts.js';
 import { registerGoldenPathPrompts } from './prompts/goldenPathPrompts.js';
 import { EMBEDDED_INSTRUCTIONS } from './embeddedInstructions.js';
+// Force UTF-8 encoding for STDIO on Windows (fixes emoji/UTF-8 character corruption)
+// On Windows, Node.js defaults to Windows-1252 which corrupts UTF-8 multi-byte characters
+if (process.stdout.setDefaultEncoding) {
+    process.stdout.setDefaultEncoding('utf8');
+}
+if (process.stdin.setEncoding) {
+    process.stdin.setEncoding('utf8');
+}
 const logger = createLogger('Server');
 async function start() {
     let config;

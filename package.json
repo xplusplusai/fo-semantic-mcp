@@ -1,36 +1,34 @@
 {
   "name": "fo-semantic-mcp",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "description": "Model Context Protocol server providing semantic search over Dynamics 365 F&O artifacts.",
-  "mcpName": "io.github.xplusplusai/fo-semantic-mcp",
   "type": "module",
-  "main": "./dist/server.js",
   "bin": {
     "fo-semantic-mcp": "./dist/server.js"
   },
   "scripts": {
-    "start": "node ./dist/server.js"
+    "embed": "node scripts/embed-instructions.js",
+    "build": "npm run embed && tsc --project tsconfig.json",
+    "build:release": "npm run build",
+    "build:cjs": "npm run embed && tsc --project tsconfig.cjs.json",
+    "dev": "tsx watch src/server.ts",
+    "start": "node ./dist/server.js",
+    "check": "tsc --noEmit",
+    "build:exe": "npm run build:cjs && npx pkg dist-cjs/server.js --targets node18-win-x64 --output fo-semantic-mcp-win.exe",
+    "bundle": "npm run embed && npx esbuild src/server.ts --bundle --platform=node --target=node18 --outfile=dist/server.bundle.js --format=cjs --external:@modelcontextprotocol/sdk --external:node-fetch --external:zod",
+    "build:exe2": "npm run bundle && npx pkg dist/server.bundle.js --targets node18-win-x64 --output fo-semantic-mcp-win-v2.exe"
   },
-  "keywords": [
-    "mcp",
-    "model-context-protocol",
-    "dynamics-365",
-    "finance-operations",
-    "semantic-search",
-    "ai-assistant"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/xplusplusai/fo-semantic-mcp.git"
-  },
-  "author": "XPLUSPLUS.AI",
-  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "node-fetch": "^3.3.0",
+    "pkg": "^5.8.1",
     "zod": "^3.25.76"
   },
-  "engines": {
-    "node": ">=18.0.0"
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.25.10",
+    "nexe": "^5.0.0-beta.4",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
   }
 }
