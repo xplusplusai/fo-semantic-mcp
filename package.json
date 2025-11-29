@@ -1,6 +1,6 @@
 {
   "name": "fo-semantic-mcp",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "mcpName": "io.github.xplusplusai/fo-semantic-mcp",
   "description": "Model Context Protocol server providing semantic search over Dynamics 365 F&O artifacts.",
   "type": "module",
