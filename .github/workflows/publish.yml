@@ -1,0 +1,108 @@
+name: Publish to NPM and GitHub Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+      
+      - name: Get version from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      
+      - name: Verify package.json version matches tag
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION="${{ steps.version.outputs.version }}"
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "❌ Version mismatch: package.json=$PKG_VERSION, tag=$TAG_VERSION"
+            exit 1
+          fi
+          echo "✅ Version matches: $PKG_VERSION"
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Publish to NPM
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          release_name: FO Semantic MCP Server v${{ steps.version.outputs.version }}
+          body: |
+            # FO Semantic MCP Server v${{ steps.version.outputs.version }}
+
+            **AI-powered semantic search for Microsoft Dynamics 365 Finance & Operations development**
+
+            ## 🎯 What's New
+
+            See [CHANGELOG.md](https://github.com/xplusplusai/fo-semantic-mcp/blob/main/CHANGELOG.md) for detailed release notes.
+
+            ## 📦 Installation
+
+            ```bash
+            npm install fo-semantic-mcp@${{ steps.version.outputs.version }}
+            ```
+
+            Or update to latest:
+            ```bash
+            npm update fo-semantic-mcp
+            ```
+
+            ## 🚀 Quick Start
+
+            1. Get your API key at https://www.xplusplus.ai
+            2. Configure in Cursor/Claude Desktop:
+               ```json
+               {
+                 "mcpServers": {
+                   "fo-semantic-mcp": {
+                     "command": "npx",
+                     "args": ["-y", "fo-semantic-mcp"],
+                     "env": {
+                       "FOINDEX_API_KEY": "your-api-key"
+                     }
+                   }
+                 }
+               }
+               ```
+            3. Restart your IDE
+            4. Start searching D365 F&O artifacts!
+
+            ## 📚 Documentation
+
+            - [Getting Started Guide](https://github.com/xplusplusai/fo-semantic-mcp/blob/main/docs/GETTING_STARTED.md)
+            - [API Documentation](https://github.com/xplusplusai/fo-semantic-mcp/blob/main/README.md)
+            - [Troubleshooting](https://github.com/xplusplusai/fo-semantic-mcp/blob/main/docs/TROUBLESHOOTING.md)
+
+            ---
+
+            **Ready to transform your F&O development workflow!** 🚀
+          draft: false
+          prerelease: false
+

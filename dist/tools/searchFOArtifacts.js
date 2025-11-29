@@ -40,10 +40,57 @@ const SearchToolOutput = z.object({
     raw: z.unknown().optional(),
 });
 export const SEARCH_TOOL_NAME = 'search_fo_artifacts';
+/**
+ * Build comprehensive tool description with examples and guidance
+ */
+function buildToolDescription() {
+    return `Semantic search over Microsoft Dynamics 365 Finance & Operations standard artifacts (tables, forms, classes, etc.). 
+Searches D365 metadata only - does not index user custom code.
+
+🎯 BEST FOR (Technical/Structural Queries):
+• Cross-reference lookup: "find where CustTable is used"
+• Method search: "show classes with validateWrite method"  
+• Inheritance: "what extends SalesLine"
+• Table references: "tables that reference LedgerJournalTrans"
+• Field search: "tables with CustAccount field"
+• EDT search: "artifacts using AmountCur EDT"
+• Module/domain: "sales order staging tables"
+
+⚠️ NOT SUITABLE FOR (Business/Conceptual Queries):
+• Process workflows: "how to validate customer credit limits" → Too conceptual, search for specific artifacts first
+• Business processes: "sales order approval workflow" → Spans multiple artifacts, search by artifact name instead
+• General concepts: "customer payment reconciliation" → Too broad, use specific artifact names
+
+✅ QUERY TIPS:
+1. Use specific artifact names: "CustTable", "SalesLine.validateWrite()"
+2. Include technical terms: "extends", "uses", "implements", "references"
+3. Use artifact_types filter to narrow results: ["Table"], ["Class"], etc.
+4. For business questions: Search for specific artifact first, THEN read its metadata (aiDescription field)
+
+📋 EXAMPLES:
+
+Good Technical Queries:
+• "find where CustTable is used" → Returns artifacts with CustTable in cross-references
+• "show SalesTable methods" → Returns SalesTable with method list
+• "tables extending Common" → Returns inheritance relationships
+• "CustInvoiceJour staging" → Returns staging tables in invoice domain
+
+Poor Business Queries (Use Different Approach):
+• "how to manage credit limits" → Instead: Search "CreditMax" or "CustTable" first, then read metadata
+• "invoice posting process" → Instead: Search "LedgerJournalTrans" or "CustInvoiceTrans", then read
+• "sales order workflow" → Instead: Search "SalesTable" or "SalesLine", then explore cross-references
+
+💡 WORKFLOW:
+1. Search for specific artifact by name
+2. Read artifact XML (using fullLocalPath from results)
+3. Check cross-references (uses/usedBy in metadata)
+4. Read related artifacts as needed
+5. Use metadata.aiDescription for business context`;
+}
 export function registerSearchTool(server, client, config) {
     server.registerTool(SEARCH_TOOL_NAME, {
         title: 'Search F&O Artifacts',
-        description: 'Semantic search over Microsoft Dynamics 365 Finance & Operations standard artifacts (tables, forms, classes, etc.). Searches D365 metadata only - does not index user custom code.',
+        description: buildToolDescription(),
         inputSchema: SearchToolInput.shape,
         outputSchema: SearchToolOutput.shape,
     }, async (args) => {

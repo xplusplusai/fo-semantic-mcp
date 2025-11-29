@@ -65,6 +65,18 @@ User Request: "${userRequest}"
 
 **Purpose:** Discover what Microsoft provides out-of-the-box and understand the standard patterns.
 
+**Query Construction Tips:**
+- ✅ Use specific artifact names: "SalesTable", "CustTable", "InventTable"
+- ✅ Include technical terms: "extends", "uses", "staging", "entity"
+- ✅ Filter by type: artifact_types: ["Table"], ["Form"], ["Class"]
+- ⚠️ Avoid vague business terms: "workflow", "process", "how to"
+
+**Good Query Examples:**
+- "find where CustTable is used" (cross-reference lookup)
+- "show SalesTable methods" (method search)
+- "tables extending Common" (inheritance)
+- "sales order staging tables" (domain + type)
+
 **I will search for:** [Describe what standard artifacts I'll search for based on the user's request]
 
 ---
