@@ -3,12 +3,12 @@
   "name": "io.github.xplusplusai/fo-semantic-mcp",
   "title": "FO Semantic MCP",
   "description": "Semantic search over 50,000+ Dynamics 365 F&O artifacts: tables, forms, classes, and more.",
-  "version": "2.0.8",
+  "version": "2.1.5",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "fo-semantic-mcp",
-      "version": "2.0.8",
+      "version": "2.1.5",
       "transport": {
         "type": "stdio"
       }
