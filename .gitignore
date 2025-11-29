@@ -1,5 +1,6 @@
-# Release version includes built files and dependencies for end users
-# Only exclude development files
+# Release version includes built files
+# Dependencies should be installed via npm install
+node_modules/
 npm-debug.log*
 *.tsbuildinfo
 
