@@ -1,4 +1,4 @@
-name: Publish to NPM and GitHub Release
+name: Release to NPM, MCP Registry, and GitHub
 
 on:
   push:
@@ -7,9 +7,10 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
     
     steps:
@@ -42,11 +43,24 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
+      # Step 1: Publish to NPM
       - name: Publish to NPM
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMTOKEN }}
       
+      # Step 2: Publish to MCP Registry
+      - name: Install MCP Publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+      
+      - name: Login to MCP Registry
+        run: ./mcp-publisher login github-oidc
+      
+      - name: Publish to MCP Registry
+        run: ./mcp-publisher publish
+      
+      # Step 3: Create GitHub Release
       - name: Create GitHub Release
         uses: actions/create-release@v1
         env:
@@ -65,6 +79,7 @@ jobs:
 
             ## 📦 Installation
 
+            ### Via NPM (Recommended)
             ```bash
             npm install fo-semantic-mcp@${{ steps.version.outputs.version }}
             ```
@@ -73,6 +88,9 @@ jobs:
             ```bash
             npm update fo-semantic-mcp
             ```
+
+            ### Via MCP Registry
+            Available in the official MCP Registry - search for "fo-semantic-mcp"
 
             ## 🚀 Quick Start
 
@@ -101,6 +119,11 @@ jobs:
             - [Troubleshooting](https://github.com/xplusplusai/fo-semantic-mcp/blob/main/docs/TROUBLESHOOTING.md)
 
             ---
+
+            **Published to:**
+            - ✅ NPM Registry
+            - ✅ MCP Registry
+            - ✅ GitHub Releases
 
             **Ready to transform your F&O development workflow!** 🚀
           draft: false
