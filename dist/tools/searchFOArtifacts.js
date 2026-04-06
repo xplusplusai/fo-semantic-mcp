@@ -85,7 +85,47 @@ Poor Business Queries (Use Different Approach):
 2. Read artifact XML (using fullLocalPath from results)
 3. Check cross-references (uses/usedBy in metadata)
 4. Read related artifacts as needed
-5. Use metadata.aiDescription for business context`;
+5. Use metadata.aiDescription for business context
+
+🔍 DETAIL LOOKUP (get structural metadata):
+When you need full structural data (form control trees, table field details, entity mappings,
+security entry points, full cross-references), use foName filter + single artifact_type.
+This triggers SQL enrichment with detailed metadata not available in semantic search results.
+
+Examples:
+• Get form control tree: search_fo_artifacts({ query: "SalesTable", filters: { foName: "SalesTable" }, artifact_types: ["Form"] })
+  → Returns: controlTree (nested control hierarchy), dataSources, formPattern
+• Get table structure: search_fo_artifacts({ query: "CustTable", filters: { foName: "CustTable" }, artifact_types: ["Table"] })
+  → Returns: fields (with EDT, mandatory, type), relations (with FK constraints), indexes, tableGroup
+• Get entity mappings: search_fo_artifacts({ query: "SalesOrderHeaderV2Entity", filters: { foName: "SalesOrderHeaderV2Entity" }, artifact_types: ["DataEntity"] })
+  → Returns: fieldMappings, dataSources, stagingTable
+• Get security chain: search_fo_artifacts({ query: "SalesTableMaintain", filters: { foName: "SalesTableMaintain" }, artifact_types: ["SecurityPrivilege"] })
+  → Returns: entry points (object, type, grant level)
+
+IMPORTANT: foName alone is NOT enough for detail lookup — you MUST also specify a single artifact_type.
+The same name can exist as Form, Table, Query, etc. Without artifact_type, only Pinecone semantic results are returned.
+
+📐 CONTROL TREE FORMAT (Form detail lookups):
+When you request a Form detail lookup, the controlTree field returns an indented text format:
+
+  0 Design [Design]
+  1   ActionPaneHeader [ActionPane]
+  2     SalesOrder [ActionPaneTab]
+  3       NewGroup [ButtonGroup]
+  3       SalesOrderProcess [ButtonGroup]
+  1   MainTab [Tab]
+  2     TabPageDetails [TabPage]
+  3       HeaderView [Group]
+  4         TabHeaderGeneral [TabPage]
+
+Format: "{level} {indent}{name} [{type}]"
+- Level number = nesting depth (0=root). This is the source of truth for hierarchy.
+- Indentation = visual aid (2 spaces per level)
+- Type = abbreviated control type (ActionPane, Group, Tab, TabPage, Grid, String, CheckBox, ComboBox, MenuButton, etc.)
+- Complete tree — all controls at all levels including action panes
+
+Use this to understand form layout, find control groups for extensions, and identify where to add new controls.
+To parse: split by newline, extract level number, name, and type from each line.`;
 }
 export function registerSearchTool(server, client, config) {
     server.registerTool(SEARCH_TOOL_NAME, {
