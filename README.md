@@ -13,12 +13,14 @@ Supercharge your AI coding assistant with deep F&O knowledge. This MCP server en
 ## 📋 Features
 
 ✅ **Semantic Search** - Find F&O artifacts using natural language
-✅ **50,000+ Artifacts** - Tables, Forms, Classes, EDT, Enums, Data Entities, Views, Queries
+✅ **166,000+ Artifacts** - Tables, Forms, Classes, EDTs, Enums, Data Entities, Queries, Security, Menu Items
+✅ **Detail Lookup** - Get full structural data: form control trees, table fields/relations/indexes, entity mappings, security chains
+✅ **Full Cross-References** - Complete uses/usedBy lists for every artifact (untruncated)
 ✅ **AI Descriptions** - Understand artifact purpose without reading XML
 ✅ **Local File Access** - Read actual F&O XML files for complete analysis
 ✅ **Rich Metadata** - Business domains, modules, configuration keys, usage context
 ✅ **Multi-Platform** - Works on Windows, macOS, Linux with Node.js
-✅ **MCP Compatible** - Works with Cursor IDE, Claude Desktop, VS Code
+✅ **MCP Compatible** - Works with Cursor IDE, Claude Desktop, VS Code, Claude Code
 
 ## 🎯 Perfect For
 
@@ -342,33 +344,73 @@ npm view fo-semantic-mcp version
 }
 ```
 
-## 📖 What's New in v2.0.7
+## 📖 What's New in v2.2.0
 
-### Latest Fixes
-- ✅ **MCP STDIO protocol compliance** - Fixed initialization timeouts in Claude Desktop
-- ✅ **MCP registry publication** - Now discoverable in official MCP catalog at registry.modelcontextprotocol.io
-- ✅ **npm installation support** - Install via `npm install -g` or use directly with `npx`
-- ✅ **Character encoding fixes** - Clean display of prompts and responses
-- ✅ **Logging improvements** - All logs use STDERR for proper MCP protocol compliance
+### Detail Lookup — Full Structural Data for Any Artifact
 
-### Previous v2.0 Improvements
-- ✅ **Simplified architecture** - Concise tool documentation and clean responses
-- ✅ **Single prompt** - One clear `fo-development-assistant` prompt
-- ✅ **Standard TypeScript build** - Removed obfuscation for transparency
-- ✅ **Production-ready package** - Only essential runtime files included
-- ✅ **Better MCP alignment** - Follows proper MCP architecture patterns
+Search by **exact name + artifact type** to get complete structural metadata beyond what semantic search returns.
 
-### Migration from Earlier Versions
+```
+search_fo_artifacts("SalesTable", filters: { foName: "SalesTable" }, artifact_types: ["Table"])
+search_fo_artifacts("SalesTable", filters: { foName: "SalesTable" }, artifact_types: ["Form"])
+```
 
-**From v1.x:**
-- No breaking API changes
-- Update installation and restart your AI client
-- Configuration format is compatible
+**What you get per artifact type:**
 
-**From v2.0.0-2.0.6:**
-- Use npx method for easiest updates
-- Update configuration to use `npx` command (recommended)
-- Restart AI client to load new version
+| Type | Structural Data |
+|------|----------------|
+| **Table** | All fields (with EDT, type, mandatory), FK relations with field-level constraints, indexes with fields, table group, primary index |
+| **Form** | Complete control tree (see below), data sources with table bindings, form pattern |
+| **Data Entity** | Field-to-source mappings, data sources, staging table |
+| **Query** | Hierarchical data source joins, ranges, order by |
+| **EDT** | Base type, extends chain, reference table, string size |
+| **Enum** | All values with integer values and labels |
+| **Security** | Privilege entry points, duty-to-privilege chains, role-to-duty chains |
+| **Class** | Extends/extensionOf, event handlers, method signatures |
+| **Menu Item** | Target object, label, config key |
+| **All types** | Full cross-references — complete `uses` and `usedBy` lists (no longer truncated) |
+
+### Form Control Trees
+
+Detail lookup on a Form returns the complete UI control hierarchy in a compact, readable text format:
+
+```
+0 Design [Design]
+1   ActionPaneHeader [ActionPane]
+2     SalesOrder [ActionPaneTab]
+3       NewGroup [ButtonGroup]
+3       SalesOrderProcess [ButtonGroup]
+1   NavigationList [Group]
+2     QuickFilterControl [Control]
+1   MainTab [Tab]
+2     TabPageDetails [TabPage]
+3       HeaderView [Group]
+4         TabHeaderGeneral [TabPage]
+5           GroupCustomer [Group]
+```
+
+- **Level number** = nesting depth (0 = root)
+- **Type** = abbreviated control type (ActionPane, Group, Tab, TabPage, Grid, String, CheckBox, ComboBox, MenuButton, etc.)
+- Complete tree — all controls at all levels
+- SalesTable form: 1,138 controls in ~15KB (vs 86KB raw XML)
+
+Use this to understand form layout, find the right control group for extensions, and identify where to add new controls.
+
+### Full Cross-References
+
+Every detail lookup now includes complete `uses` and `usedBy` arrays — the full list of artifacts that reference or are referenced by the target. Previously these were truncated for large artifacts like SalesTable (19,000+ references).
+
+### Previous Versions
+
+<details>
+<summary>v2.0.7 and earlier</summary>
+
+- MCP STDIO protocol compliance — fixed initialization timeouts in Claude Desktop
+- MCP registry publication — discoverable in official MCP catalog
+- npm installation support — `npm install -g` or `npx`
+- Character encoding fixes, logging improvements
+- Simplified architecture, single prompt, standard TypeScript build
+</details>
 
 ## 🆘 Support
 
