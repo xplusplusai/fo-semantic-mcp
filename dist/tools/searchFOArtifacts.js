@@ -132,7 +132,6 @@ export function registerSearchTool(server, client, config) {
         title: 'Search F&O Artifacts',
         description: buildToolDescription(),
         inputSchema: SearchToolInput.shape,
-        outputSchema: SearchToolOutput.shape,
     }, async (args) => {
         const parsedArgs = SearchToolInput.parse(args);
         const limit = parsedArgs.limit ? Math.min(parsedArgs.limit, config.hardLimit) : undefined;
@@ -149,7 +148,6 @@ export function registerSearchTool(server, client, config) {
                         text: formatSuccessMessage(structured.results.length, structured.related?.length, structured),
                     },
                 ],
-                structuredContent: structured,
             };
         }
         catch (error) {
@@ -168,12 +166,6 @@ function handleToolError(error, config) {
                     text,
                 },
             ],
-            structuredContent: SearchToolOutput.parse({
-                results: [],
-                usage_instructions: 'Resolve the reported issue before retrying the search.',
-                localAssetsPath: config.localAssetsPath ?? 'Not configured',
-                raw: error.details,
-            }),
         };
     }
     logger.error('Unhandled error in search tool', error instanceof Error ? { message: error.message } : error);
